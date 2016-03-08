@@ -201,9 +201,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603060539260_configuracion inicial.cs" />
-    <Compile Include="Migrations\201603060539260_configuracion inicial.Designer.cs">
-      <DependentUpon>201603060539260_configuracion inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201603080309233_agregar campos usuario2.cs" />
+    <Compile Include="Migrations\201603080309233_agregar campos usuario2.Designer.cs">
+      <DependentUpon>201603080309233_agregar campos usuario2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -285,8 +285,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603060539260_configuracion inicial.resx">
-      <DependentUpon>201603060539260_configuracion inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603080309233_agregar campos usuario2.resx">
+      <DependentUpon>201603080309233_agregar campos usuario2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
