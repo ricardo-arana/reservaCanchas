@@ -139,6 +139,7 @@ namespace ReservaDeCanchas.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
             return View();
         }
 
@@ -151,7 +152,9 @@ namespace ReservaDeCanchas.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Nombre = model.Nombre,
+                Apellido = model.Apellido, TipoDocumento = model.TipoDocumento, NroDocumento = model.NroDocumento,
+                superuser = false};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

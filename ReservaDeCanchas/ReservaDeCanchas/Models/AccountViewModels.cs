@@ -79,6 +79,14 @@ namespace ReservaDeCanchas.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+        public string Nombre { get;  set; }
+        public string Apellido { get;  set; }
+
+        [Display(Name = "Tipo de documento")]
+        public string TipoDocumento { get;  set; }
+        [Display(Name = "Número de documento")]
+        public string NroDocumento { get;  set; }
+
     }
 
     public class ResetPasswordViewModel
