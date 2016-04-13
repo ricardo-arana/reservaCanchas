@@ -13,19 +13,6 @@ namespace ReservaDeCanchas.Models
     {
 
         
-        [Required]
-        public string Nombre { get; set; }
-        [Required]
-        public string Apellido { get; set; }
-        [MaxLength(12)]
-        [Required]
-        [Index("IX_DocumentoId", 1, IsUnique = true)]
-        public string TipoDocumento { get; set; }
-        [MaxLength(12)]
-        [Required]
-        [Index("IX_DocumentoId", 2)]
-        public string NroDocumento { get; set; }
-        public bool superuser { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Tenga en cuenta que el valor de authenticationType debe coincidir con el definido en CookieAuthenticationOptions.AuthenticationType

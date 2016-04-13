@@ -7,13 +7,13 @@ namespace ReservaDeCanchas.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class agregarcamposusuario2 : IMigrationMetadata
+    public sealed partial class Agregatipodecampo : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(agregarcamposusuario2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Agregatipodecampo));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603080309233_agregar campos usuario2"; }
+            get { return "201603170415145_Agrega tipo de campo"; }
         }
         
         string IMigrationMetadata.Source

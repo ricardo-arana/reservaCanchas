@@ -4,7 +4,8 @@ namespace ReservaDeCanchas.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    using Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
     internal sealed class Configuration : DbMigrationsConfiguration<ReservaDeCanchas.Models.ApplicationDbContext>
     {
         public Configuration()
@@ -26,6 +27,16 @@ namespace ReservaDeCanchas.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            addrole(context, "Administrador");
+        }
+
+        private void addrole(ApplicationDbContext context, string v)
+        {
+            context.Roles.AddOrUpdate(
+               r => r.Name,
+                new IdentityRole { Name = v} 
+                );
         }
     }
 }
