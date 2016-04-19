@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9B252B2D-8B2F-48A6-9A81-80339EA38956}</ProjectGuid>
+    <ProjectGuid>{D34C1DA2-2E6F-4464-ADF4-9E639BD28D52}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DatosRC</RootNamespace>
@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,13 +52,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\CampoSet.cs" />
+    <Compile Include="ADO\DatosModel.cs" />
+    <Compile Include="ADO\DatosModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosModelDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\DatosModelDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\FotoSet.cs" />
+    <Compile Include="ADO\PagoSet.cs" />
+    <Compile Include="ADO\ReservaSet.cs" />
+    <Compile Include="ADO\Tipo_campoSet.cs" />
+    <Compile Include="ADO\UsuarioSet.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ADO\DatosModelDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DatosModelDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ADO\DatosModelDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DatosModelDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

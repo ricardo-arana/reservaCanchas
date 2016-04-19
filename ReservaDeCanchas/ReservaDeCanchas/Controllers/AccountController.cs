@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ReservaDeCanchas.Models;
+using DatosRC.ADO;
 
 namespace ReservaDeCanchas.Controllers
 {
@@ -17,6 +18,8 @@ namespace ReservaDeCanchas.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+      
 
         public AccountController()
         {
@@ -160,6 +163,30 @@ namespace ReservaDeCanchas.Controllers
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
+
+                    //Crear el usuario en la tabla de reserva de cancha
+                    UsuarioSet usuarioRC = new UsuarioSet
+                    {
+                        Id = user.Id,
+                        Nombre = model.Nombre,
+                        Apellido = model.Apellido,
+                        Telefono = model.Telefono,
+                        Documento_Tipo_Documento = model.TipoDocumento,
+                        Documento_Nro_Documento = model.NroDocumento,
+                        Estado = "A",
+                        Fecha_Registro = DateTime.Now,
+                        Datos_Adicionales = "Ninguno"
+                    };
+
+                    DatosModel db = new DatosModel();
+
+                    db.UsuarioSet.Add(usuarioRC);
+
+                    db.SaveChanges();
+
+
+                    
+                    
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");

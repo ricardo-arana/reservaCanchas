@@ -82,6 +82,8 @@ namespace ReservaDeCanchas.Models
         public string Nombre { get;  set; }
         public string Apellido { get;  set; }
 
+        [Display(Name = "Telefono")]
+        public string Telefono { get; set; }
         [Display(Name = "Tipo de documento")]
         public string TipoDocumento { get;  set; }
         [Display(Name = "Número de documento")]

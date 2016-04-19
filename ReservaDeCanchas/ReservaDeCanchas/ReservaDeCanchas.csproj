@@ -210,8 +210,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CampoController.cs" />
+    <Compile Include="Controllers\CamposReservarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Tipo_campoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,7 +224,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CampoDetalleViewModel.cs" />
     <Compile Include="Models\CampoModel.cs" />
+    <Compile Include="Models\CamposListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TipoCanchaViewModels.cs" />
@@ -254,7 +259,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -289,9 +296,22 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Campo\Create.cshtml" />
+    <Content Include="Views\Campo\Delete.cshtml" />
+    <Content Include="Views\Campo\Details.cshtml" />
+    <Content Include="Views\Campo\Edit.cshtml" />
+    <Content Include="Views\Campo\Index.cshtml" />
+    <Content Include="Views\Tipo_campo\Create.cshtml" />
+    <Content Include="Views\Tipo_campo\Delete.cshtml" />
+    <Content Include="Views\Tipo_campo\Details.cshtml" />
+    <Content Include="Views\Tipo_campo\Edit.cshtml" />
+    <Content Include="Views\Tipo_campo\Index.cshtml" />
+    <Content Include="Views\CamposReservar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -305,6 +325,12 @@
     <EmbeddedResource Include="Migrations\201603170415145_Agrega tipo de campo.resx">
       <DependentUpon>201603170415145_Agrega tipo de campo.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatosRC\DatosRC.csproj">
+      <Project>{d34c1da2-2e6f-4464-adf4-9e639bd28d52}</Project>
+      <Name>DatosRC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
