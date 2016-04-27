@@ -1,0 +1,65 @@
+﻿@model DatosRC.ADO.CampoSet
+
+
+@{
+    ViewBag.Title = "Horarios";
+}
+
+<h2>Horarios</h2>
+
+<div>
+    <h4>CampoSet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_campoSet.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_campoSet.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+
+
+    </dl>
+</div>
+
+<div class="row">
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+             
+
+
+              <th>Hora</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+          </tr>
+      </thead>
+    </table>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

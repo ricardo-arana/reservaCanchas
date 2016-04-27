@@ -307,10 +307,11 @@
     <Content Include="Views\Tipo_campo\Edit.cshtml" />
     <Content Include="Views\Tipo_campo\Index.cshtml" />
     <Content Include="Views\CamposReservar\Index.cshtml" />
+    <Content Include="Views\CamposReservar\Horarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
+    <Folder Include="images\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
@@ -327,9 +328,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatosRC\DatosRC.csproj">
+    <ProjectReference Include="..\DatosRC\ReservaDeCanchas.Datos.csproj">
       <Project>{d34c1da2-2e6f-4464-adf4-9e639bd28d52}</Project>
-      <Name>DatosRC</Name>
+      <Name>ReservaDeCanchas.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReservadeCanchas.Negocio\ReservadeCanchas.Negocio.csproj">
+      <Project>{854e7be5-9ef5-4568-912c-ac8c45a8c4dd}</Project>
+      <Name>ReservadeCanchas.Negocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

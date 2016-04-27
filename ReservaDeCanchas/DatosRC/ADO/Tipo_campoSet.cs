@@ -17,6 +17,7 @@ namespace DatosRC.ADO
         public int Id { get; set; }
 
         [Required]
+        [Display(Name ="Tipo de Campo")]
         public string Nombre { get; set; }
 
         [Required]
