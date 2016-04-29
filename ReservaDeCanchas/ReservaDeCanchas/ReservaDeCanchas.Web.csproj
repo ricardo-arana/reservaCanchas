@@ -308,6 +308,7 @@
     <Content Include="Views\Tipo_campo\Index.cshtml" />
     <Content Include="Views\CamposReservar\Index.cshtml" />
     <Content Include="Views\CamposReservar\Horarios.cshtml" />
+    <Content Include="Views\CamposReservar\_HorariosDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

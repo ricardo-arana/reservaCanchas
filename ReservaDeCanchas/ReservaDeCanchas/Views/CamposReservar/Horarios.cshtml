@@ -1,4 +1,4 @@
-﻿@model DatosRC.ADO.CampoSet
+﻿@model ReservaDeCanchas.Models.CampoDetalleViewModel
 
 
 @{
@@ -12,27 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Tipo_campoSet.Nombre)
+            @Html.DisplayNameFor(model => model.campo.Tipo_campoSet.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tipo_campoSet.Nombre)
+            @Html.DisplayFor(model => model.campo.Tipo_campoSet.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.campo.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.campo.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.campo.Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.campo.Descripcion)
         </dd>
 
 
@@ -40,23 +40,42 @@
     </dl>
 </div>
 
+
 <div class="row">
     <table class="table table-bordered">
-      <thead>
-          <tr>
-             
+        <thead>
+            <tr>
+                <th>Hora</th>
+                @foreach (var dia in Model.semana)
+                {
+                    <th>@dia.textoDia</th>
+                
+                }
 
 
-              <th>Hora</th>
-              <th>Lunes</th>
-              <th>Martes</th>
-              <th>Miercoles</th>
-              <th>Jueves</th>
-              <th>Viernes</th>
-              <th>Sabado</th>
-              <th>Domingo</th>
-          </tr>
-      </thead>
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 8; i<23; i++)
+            {
+                
+                <tr>
+                    <td>@string.Format("{0}:00", i)</td>
+                    @foreach (var dia in Model.semana)
+                    {
+                        if(Model.reservas.Where(r=> r.FechaHoraAlquiler.Date == dia.fecha.Date && r.FechaHoraAlquiler.Hour == i).Count()>0)
+                        {
+                            <td  class="success">Reservado</td>
+                        }
+                        else
+                        {
+                            <td>Libre</td>
+                        }
+
+                    }
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 <p>

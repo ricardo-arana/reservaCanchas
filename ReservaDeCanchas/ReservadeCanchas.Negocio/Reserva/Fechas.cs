@@ -18,7 +18,7 @@ namespace ReservadeCanchas.Negocio.Reserva
 
             for (int i = 1; i < 7; i++)
             {
-                dia.AddDays(1);
+                dia = dia.AddDays(1);
                 diaTexto = dia.ToString("dddd") + " " + dia.Day;
                 lista.Add(new Dias { textoDia = diaTexto, fecha = dia });
             }
