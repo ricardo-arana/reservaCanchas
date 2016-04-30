@@ -218,9 +218,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603170415145_Agrega tipo de campo.cs" />
-    <Compile Include="Migrations\201603170415145_Agrega tipo de campo.Designer.cs">
-      <DependentUpon>201603170415145_Agrega tipo de campo.cs</DependentUpon>
+    <Compile Include="Migrations\201604301928241_Initial.cs" />
+    <Compile Include="Migrations\201604301928241_Initial.Designer.cs">
+      <DependentUpon>201604301928241_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -245,9 +245,6 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -326,11 +323,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603170415145_Agrega tipo de campo.resx">
-      <DependentUpon>201603170415145_Agrega tipo de campo.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DatosRC\ReservaDeCanchas.Datos.csproj">
       <Project>{d34c1da2-2e6f-4464-adf4-9e639bd28d52}</Project>
       <Name>ReservaDeCanchas.Datos</Name>
@@ -339,6 +331,11 @@
       <Project>{854e7be5-9ef5-4568-912c-ac8c45a8c4dd}</Project>
       <Name>ReservadeCanchas.Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604301928241_Initial.resx">
+      <DependentUpon>201604301928241_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
