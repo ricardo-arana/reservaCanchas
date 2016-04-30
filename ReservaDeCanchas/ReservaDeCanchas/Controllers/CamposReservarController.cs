@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using ReservadeCanchas.Negocio.Reserva;
 using ReservadeCanchas.Negocio.Modelos;
 using ReservaDeCanchas.Models;
-
+using Microsoft.AspNet.Identity;
 namespace ReservaDeCanchas.Controllers
 {
     
@@ -63,15 +63,21 @@ namespace ReservaDeCanchas.Controllers
         }
 
         [Authorize]
-        public ActionResult Reservar(DateTime FechaAlquiler,Decimal montoAlquiler, CampoSet campo)
+        public ActionResult Reservar(ReservaSet reserva)
         {
-            var model = new ReservaViewModel{ FechaHoraAlquiler = FechaAlquiler, montoAlquier = montoAlquiler,campoId = campo.Id };
-            return View(model);
+            reserva.Fecha = DateTime.Now;
+            reserva.FechaHoraVencimiento = DateTime.Now.AddDays(1);
+            reserva.Estado = "P";
+            reserva.CreadoPor = User.Identity.Name;
+            reserva.UsuarioSet = db.UsuarioSet.Find(User.Identity.GetUserId());
+            reserva.CampoSet = db.CampoSet.Find(reserva.Campo_Id);
+
+            return View(reserva);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Reservar(DateTime FechaAlquiler, Decimal montoAlquiler, UsuarioSet usuario, CampoSet campo)
+        public ActionResult ReservarCrear(DateTime FechaAlquiler, Decimal montoAlquiler, UsuarioSet usuario, CampoSet campo)
         {
 
             return View();

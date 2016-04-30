@@ -31,8 +31,8 @@ namespace DatosRC.ADO
 
         public decimal MontoPagado { get; set; }
 
-        [Required]
-        public string FechaHoraVencimiento { get; set; }
+        
+        public DateTime FechaHoraVencimiento { get; set; }
 
         [Required]
         [StringLength(128)]

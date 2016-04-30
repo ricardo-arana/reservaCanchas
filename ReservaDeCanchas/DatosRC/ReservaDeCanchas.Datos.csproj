@@ -70,6 +70,11 @@
     <Compile Include="ADO\Tipo_campoSet.cs" />
     <Compile Include="ADO\UsuarioSet.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Migrations\201604301457087_cambio_tipo_FechVen.cs" />
+    <Compile Include="Migrations\201604301457087_cambio_tipo_FechVen.Designer.cs">
+      <DependentUpon>201604301457087_cambio_tipo_FechVen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +93,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DatosModelDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604301457087_cambio_tipo_FechVen.resx">
+      <DependentUpon>201604301457087_cambio_tipo_FechVen.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -69,7 +69,8 @@
                         }
                         else
                         {
-                            <td>@Html.ActionLink("Libre", "Reservar",new { FechaAlquiler = dia.fecha, montoAlquiler=160, campo = Model.campo })</td>
+                            <td>@Html.ActionLink("Libre", "Reservar",new DatosRC.ADO.ReservaSet { FechaHoraAlquiler = new DateTime(dia.fecha.Year,dia.fecha.Month,dia.fecha.Day,i,0,0),
+                           MontoAlquiler = 160 , MontoPagado = 0, Campo_Id = Model.campo.Id})</td>
                         }
 
                     }
