@@ -40,7 +40,7 @@ namespace ReservaDeCanchas.Controllers
             
             Fechas fechas = new Fechas();
             IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
-            IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha).ToList();
+            IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha && r.Campo_Id == campoSet.Id).ToList();
             var model = new CampoDetalleViewModel {campo = campoSet, semana = diasSemana, reservas = reservasLista };
 
             return View(model);
@@ -60,6 +60,21 @@ namespace ReservaDeCanchas.Controllers
             //var model = db.ReservaSet.Where(p => p.FechaHoraAlquiler >= fecha && p.FechaHoraAlquiler <= fecha2);
             
             return PartialView("_HorariosDetalle", semana);
+        }
+
+        [Authorize]
+        public ActionResult Reservar(DateTime FechaAlquiler,Decimal montoAlquiler, CampoSet campo)
+        {
+            var model = new ReservaViewModel{ FechaHoraAlquiler = FechaAlquiler, montoAlquier = montoAlquiler,campoId = campo.Id };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Reservar(DateTime FechaAlquiler, Decimal montoAlquiler, UsuarioSet usuario, CampoSet campo)
+        {
+
+            return View();
         }
     }
 

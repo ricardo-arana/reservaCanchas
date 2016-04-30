@@ -69,7 +69,7 @@
                         }
                         else
                         {
-                            <td>Libre</td>
+                            <td>@Html.ActionLink("Libre", "Reservar",new { FechaAlquiler = dia.fecha, montoAlquiler=160, campo = Model.campo })</td>
                         }
 
                     }
