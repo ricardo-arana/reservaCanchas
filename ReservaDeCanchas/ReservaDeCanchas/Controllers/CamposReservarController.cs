@@ -71,15 +71,27 @@ namespace ReservaDeCanchas.Controllers
             reserva.CreadoPor = User.Identity.Name;
             reserva.UsuarioSet = db.UsuarioSet.Find(User.Identity.GetUserId());
             reserva.CampoSet = db.CampoSet.Find(reserva.Campo_Id);
-
+            
             return View(reserva);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ReservarCrear(DateTime FechaAlquiler, Decimal montoAlquiler, UsuarioSet usuario, CampoSet campo)
+        public ActionResult ReservarCrear(ReservaSet reserva)
         {
-
+            db.ReservaSet.Add(reserva);
+            
+            try
+            {
+                db.SaveChanges();
+                ViewBag.ok = true;
+            }
+            catch (Exception)
+            {
+                ViewBag.ok = false;
+                
+            }
+            
             return View();
         }
     }

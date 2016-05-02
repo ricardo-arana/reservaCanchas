@@ -246,6 +246,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\horarios.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -308,6 +309,7 @@
     <Content Include="Views\CamposReservar\Horarios.cshtml" />
     <Content Include="Views\CamposReservar\_HorariosDetalle.cshtml" />
     <Content Include="Views\CamposReservar\Reservar.cshtml" />
+    <Content Include="Views\CamposReservar\ReservarCrear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
