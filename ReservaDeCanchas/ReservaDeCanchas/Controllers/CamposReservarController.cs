@@ -9,6 +9,8 @@ using ReservadeCanchas.Negocio.Reserva;
 using ReservadeCanchas.Negocio.Modelos;
 using ReservaDeCanchas.Models;
 using Microsoft.AspNet.Identity;
+using ReservadeCanchas.Negocio.Servicios;
+
 namespace ReservaDeCanchas.Controllers
 {
     
@@ -77,20 +79,13 @@ namespace ReservaDeCanchas.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ReservarCrear(ReservaSet reserva)
+        public ActionResult ReservarCrear(string ifechaAlquiler, string iHora, string iFechaVencimiento, string iIdCampo)
         {
-            db.ReservaSet.Add(reserva);
-            
-            try
-            {
-                db.SaveChanges();
-                ViewBag.ok = true;
-            }
-            catch (Exception)
-            {
-                ViewBag.ok = false;
+            decimal montoAlquiler = 160;
+            ServicioReserva sericioReserva = new ServicioReserva();
+            ViewBag.ok = sericioReserva.CrearReserva(ifechaAlquiler, iHora, iFechaVencimiento, iIdCampo, User.Identity.GetUserId(),montoAlquiler,0);
                 
-            }
+            
             
             return View();
         }

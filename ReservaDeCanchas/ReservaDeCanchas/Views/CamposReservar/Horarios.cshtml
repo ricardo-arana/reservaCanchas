@@ -72,7 +72,7 @@
                             <td>@*@Html.ActionLink("Libre", "Reservar",new DatosRC.ADO.ReservaSet { FechaHoraAlquiler = new DateTime(dia.fecha.Year,dia.fecha.Month,dia.fecha.Day,i,0,0),
                                MontoAlquiler = 160 , MontoPagado = 0, Campo_Id = Model.campo.Id})*@
                                 <a href="#" type="button"  data-toggle="modal" data-target="#myModal" >
-                                   <div class="horarioLibre" fecha-Alquiler="@(new DateTime(dia.fecha.Year,dia.fecha.Month,dia.fecha.Day,i,0,0))">Libre</div>
+                                   <div class="horarioLibre" fecha-Alquiler="@dia.fecha.ToString("dd/MM/yyyy")" hora="@i" idCampo="@Model.campo.Id">Libre</div>
                                 </a>
                            </td>
                         }
@@ -91,13 +91,31 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Reservar @Model.campo.Nombre</h4>
             </div>
-            <div class="modal-body">
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            @using (Html.BeginForm("ReservarCrear","CamposReservar",FormMethod.Post))
+            {
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="ifechaAlquiler">Fecha de Alquiler</label>
+                        <input type="text" class="form-control" name="ifechaAlquiler" id="ifechaAlquiler" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="iHora">Hora de Alquiler</label>
+                        <input type="text" class="form-control" name="iHora" id="iHora" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="iFechaVencimiento">Fecha de vencimiento</label>
+                        <input type="text" class="form-control" name="iFechaVencimiento" id="iFechaVencimiento" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm")" />
+                    </div>
+                    <input type="hidden" name="iIdCampo" id="iIdCampo" value="" />
+       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Realizar Reserva</button>
+                </div>
+            }
+            
         </div>
     </div>
 </div>
