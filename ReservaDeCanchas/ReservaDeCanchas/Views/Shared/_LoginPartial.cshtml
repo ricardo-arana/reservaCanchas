@@ -12,7 +12,7 @@
             @Html.ActionLink("Hola " + new DatosModel().UsuarioSet.Find(User.Identity.GetUserId()).Nombre  + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li>
-            <a href="#">Mis Reservas</a>
+            @Html.ActionLink("Mis Reservas", "MisReservas", "CamposReservar")
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
     </ul>

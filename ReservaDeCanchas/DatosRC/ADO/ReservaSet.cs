@@ -25,13 +25,16 @@ namespace DatosRC.ADO
         [Required]
         public string CreadoPor { get; set; }
 
+        [Display(Name ="Fecha y hora de alquiler")]
         public DateTime FechaHoraAlquiler { get; set; }
 
+        [Display(Name = "Monto de Alquiler")]
         public decimal MontoAlquiler { get; set; }
 
+        [Display(Name = "Monto Pagado")]
         public decimal MontoPagado { get; set; }
 
-        
+        [Display(Name = "Fecha de Vencimiento")]
         public DateTime FechaHoraVencimiento { get; set; }
 
         [Required]

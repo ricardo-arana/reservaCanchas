@@ -26,9 +26,14 @@ namespace ReservaDeCanchas
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-            //bundles.Add(new StyleBundle("~/images").Include(
-            //          "~/Content/bootstrap.css",
-            //          "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/unobtrusiveajax")
+           .Include("~/Scripts/jquery.unobtrusive-ajax.js",
+           "~/Scripts/jquery.validate.unobtrusive.js")
+               );
+            bundles.Add(new ScriptBundle("~/bundles/horarios")
+           .Include("~/Scripts/horarios.js")
+               );
+
         }
     }
 }

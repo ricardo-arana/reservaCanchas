@@ -1,0 +1,84 @@
+﻿@model IEnumerable<DatosRC.ADO.ReservaSet>
+
+@{
+    ViewBag.Title = "Mis Reservas";
+}
+
+<h2>Mis Reservas</h2>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CampoSet.Nombre)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoAlquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoPagado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaHoraVencimiento)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampoSet.Nombre)
+                </td>
+
+                <td>
+                    @switch (Html.DisplayFor(modelItem => item.Estado).ToString())
+                    {
+                        case "P":
+                            <span class="label label-primary">Pendiente</span>
+                            break;
+                        case "A":
+                            <span class="label label-warning">Pagado</span>
+                            break;
+                        case "R":
+                            <span class="label label-success">Reservado</span>
+                            break;
+                        case "T":
+                            <span class="label label-default">Terminado</span>
+                            break;
+                        default:
+                            <span class="label label-danger">Error</span>
+                            break;
+
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MontoAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MontoPagado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHoraVencimiento)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs">Agregar Pago</button>
+                    <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
