@@ -8,6 +8,15 @@ namespace ReservaDeCanchas.Models
         [Required]
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+
+        [Display(Name = "Telefono")]
+        public string Telefono { get; set; }
+        [Display(Name = "Tipo de documento")]
+        public string TipoDocumento { get; set; }
+        [Display(Name = "Número de documento")]
+        public string NroDocumento { get; set; }
     }
 
     public class ExternalLoginListViewModel

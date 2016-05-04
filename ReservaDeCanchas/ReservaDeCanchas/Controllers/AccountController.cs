@@ -371,7 +371,7 @@ namespace ReservaDeCanchas.Controllers
                     // Si el usuario no tiene ninguna cuenta, solicitar que cree una
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email,Nombre = loginInfo.DefaultUserName });
             }
         }
 
@@ -400,6 +400,25 @@ namespace ReservaDeCanchas.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    UsuarioSet usuarioRC = new UsuarioSet
+                    {
+                        Id = user.Id,
+                        Nombre = model.Nombre,
+                        Apellido = model.Apellido,
+                        Telefono = model.Telefono,
+                        Documento_Tipo_Documento = model.TipoDocumento,
+                        Documento_Nro_Documento = model.NroDocumento,
+                        Estado = "A",
+                        Fecha_Registro = DateTime.Now,
+                        Datos_Adicionales = "Registrado desde fuente externa"
+                    };
+
+                    DatosModel db = new DatosModel();
+
+                    db.UsuarioSet.Add(usuarioRC);
+
+                    db.SaveChanges();
+
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

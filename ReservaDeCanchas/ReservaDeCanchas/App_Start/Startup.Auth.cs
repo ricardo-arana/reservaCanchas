@@ -54,9 +54,9 @@ namespace ReservaDeCanchas
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1004562229598850",
+               appSecret: "bd53ca5bbb7dfdcc89dc0ed6408eb2b4");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

@@ -1,5 +1,6 @@
 namespace DatosRC.Migrations
 {
+    using ADO;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,37 @@ namespace DatosRC.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var campo1 = new CampoSet {
+                Nombre = "Chino Vazques",
+                Descripcion = "Campo que cuenta con todas las comidades",
+                Estado = "A",
+                Fecha_Creacion = DateTime.Now,
+                Fecha_Mod   = DateTime.Now,
+                Tipo_campoSet = new Tipo_campoSet {
+                            Nombre = "Mediano",
+                            Descripcion = "Campo para futbol 7"}
+            };
+
+            var campo2 = new CampoSet
+            {
+                Nombre = "La bombonera",
+                Descripcion = "Campo que cuenta con camerinos y duchas",
+                Estado = "A",
+                Fecha_Creacion = DateTime.Now,
+                Fecha_Mod = DateTime.Now,
+                Tipo_campoSet = new Tipo_campoSet
+                {
+                    Nombre = "Grande",
+                    Descripcion = "Campo para futbol 7"
+                }
+            };
+
+            context.CampoSet.Add(campo1);
+            context.CampoSet.Add(campo2);
+            context.SaveChanges();
+
+
         }
     }
 }
