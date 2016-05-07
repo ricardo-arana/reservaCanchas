@@ -57,26 +57,26 @@
                                         ))
     {
      <div class="row">
-         <div class="form-group col-sm-6">
-             <div class="input-group">
-                 <input type="date" placeholder="Buscar Evento..."
-                        name="FechaInicio" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" max="@DateTime.Now.Date.AddDays(14).ToString("yyyy-MM-dd")" class="form-control" />
-                 <input type="hidden" name="campoId" value="@Model.campo.Id" />
-                 <span class="input-group-btn">
-                     <button class="btn btn-success" type="submit">Go!</button>
-                 </span>
-             </div>
-         </div>
-   
+        
+            
+                 
+                 <div class="form-group">
+                     <input type="date"
+                            id="FechaInicio"
+                            name="FechaInicio"
+                            value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")"
+                            max="@DateTime.Now.Date.AddDays(14).ToString("yyyy-MM-dd")" 
+                            class="form-control" />
+                     <input type="hidden" name="campoId" value="@Model.campo.Id" />
+
+                     
+                 </div>
+         <button id="BtnAnterio" type="button" class="btn btn-default">Anterior</button>
+         <button id="BtnSiguiente" type="button" class="btn btn-default">Siguiente</button>
+           
+        
         </div>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">Anterior</button>
-                    <button type="button" class="btn btn-default">Siguiente</button>
-                </div>
-            </div>
-        </div>
+  
     }
         </div>
 <p>
@@ -90,5 +90,5 @@
 @section Scripts{
  
     @Scripts.Render("~/bundles/unobtrusiveajax")
-    @Scripts.Render("/bundles/horarios")
+    @Scripts.Render("/bundles/FechasHorarios")
 }
