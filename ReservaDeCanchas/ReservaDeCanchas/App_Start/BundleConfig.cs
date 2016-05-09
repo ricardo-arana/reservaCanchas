@@ -33,6 +33,9 @@ namespace ReservaDeCanchas
             bundles.Add(new ScriptBundle("~/bundles/horarios")
            .Include("~/Scripts/horarios.js")
                );
+            bundles.Add(new ScriptBundle("~/bundles/FechasHorarios")
+           .Include("~/Scripts/FechasHorarios.js")
+               );
 
         }
     }
