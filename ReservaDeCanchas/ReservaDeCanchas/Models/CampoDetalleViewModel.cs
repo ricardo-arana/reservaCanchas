@@ -1,5 +1,5 @@
-﻿using DatosRC.ADO;
-using ReservadeCanchas.Negocio.Modelos;
+﻿
+using ReservaDeCanchas.Negocio.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace ReservaDeCanchas.Models
     {
         
        
-        public CampoSet campo { get; set; }
+       // public CampoSet campo { get; set; }
 
         public IEnumerable<Dias> semana { get; set; }
 
-        public IEnumerable<ReservaSet> reservas { get; set; }
+      //  public IEnumerable<ReservaSet> reservas { get; set; }
     }
 }

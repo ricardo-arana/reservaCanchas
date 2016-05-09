@@ -1,16 +1,19 @@
-﻿using DatosRC.ADO;
+﻿using ReservaDeCanchas.Data.Repositorio;
+using ReservaDeCanchas.Dominio;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ReservadeCanchas.Negocio.Servicios
+
+namespace ReservaDeCanchas.Negocio.Servicios
 {
     public class ServicioReserva
     {
-        private DatosModel db = new DatosModel();
+        private IReservaDeCanchasRepository db;
+
+        public ServicioReserva(IReservaDeCanchasRepository repositorio)
+        {
+            db = repositorio;
+        }
         public bool CrearReserva(string fechaAlquilar, string hora, string fechaVencimiento, string idCampo, string userid, decimal MontoAlquiler, decimal MontoPagado)
         {
             int dia = int.Parse(fechaAlquilar.Substring(0,2));
@@ -32,11 +35,11 @@ namespace ReservadeCanchas.Negocio.Servicios
             Campo_Id = int.Parse(idCampo),
             Usuario_Id = userid
             };
-            db.ReservaSet.Add(reserva);
+            db.Reservas.Add(reserva);
 
             try
             {
-                db.SaveChanges();
+                db.Commit();
                 return true;
             }
             catch (Exception)

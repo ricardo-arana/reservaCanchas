@@ -329,13 +329,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatosRC\ReservaDeCanchas.Datos.csproj">
-      <Project>{d34c1da2-2e6f-4464-adf4-9e639bd28d52}</Project>
-      <Name>ReservaDeCanchas.Datos</Name>
+    <ProjectReference Include="..\ReservaDeCanchas.Infraestructura\ReservaDeCanchas.Infraestructura.csproj">
+      <Project>{3f85239d-5123-4d26-9aec-43b35e297815}</Project>
+      <Name>ReservaDeCanchas.Infraestructura</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReservadeCanchas.Negocio\ReservadeCanchas.Negocio.csproj">
+    <ProjectReference Include="..\ReservadeCanchas.Negocio\ReservaDeCanchas.Negocio.csproj">
       <Project>{854e7be5-9ef5-4568-912c-ac8c45a8c4dd}</Project>
-      <Name>ReservadeCanchas.Negocio</Name>
+      <Name>ReservaDeCanchas.Negocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

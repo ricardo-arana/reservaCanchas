@@ -9,7 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ReservaDeCanchas.Models;
-using DatosRC.ADO;
+using ReservaDeCanchas.Negocio.ViewModels;
+using ReservadeCanchas.Negocio;
+using ReservaDeCanchas.Infraestructura;
 
 namespace ReservaDeCanchas.Controllers
 {
@@ -18,11 +20,12 @@ namespace ReservaDeCanchas.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ReservasConsultas reservasConsultas;
       
 
         public AccountController()
         {
+            reservasConsultas = ConstructorServicios.ReservasConsultas();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -165,7 +168,7 @@ namespace ReservaDeCanchas.Controllers
                     // Enviar correo electrónico con este vínculo
 
                     //Crear el usuario en la tabla de reserva de cancha
-                    UsuarioSet usuarioRC = new UsuarioSet
+                    UsuarioRegistroViewModel usuarioRC = new UsuarioRegistroViewModel
                     {
                         Id = user.Id,
                         Nombre = model.Nombre,
@@ -173,19 +176,9 @@ namespace ReservaDeCanchas.Controllers
                         Telefono = model.Telefono,
                         Documento_Tipo_Documento = model.TipoDocumento,
                         Documento_Nro_Documento = model.NroDocumento,
-                        Estado = "A",
-                        Fecha_Registro = DateTime.Now,
-                        Datos_Adicionales = "Ninguno"
                     };
 
-                    DatosModel db = new DatosModel();
-
-                    db.UsuarioSet.Add(usuarioRC);
-
-                    db.SaveChanges();
-
-
-                    
+                    reservasConsultas.AddUsuario(usuarioRC);
                     
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
@@ -400,7 +393,9 @@ namespace ReservaDeCanchas.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    UsuarioSet usuarioRC = new UsuarioSet
+
+                    //registro de datos adicionales
+                    UsuarioRegistroViewModel usuarioRC = new UsuarioRegistroViewModel
                     {
                         Id = user.Id,
                         Nombre = model.Nombre,
@@ -408,16 +403,9 @@ namespace ReservaDeCanchas.Controllers
                         Telefono = model.Telefono,
                         Documento_Tipo_Documento = model.TipoDocumento,
                         Documento_Nro_Documento = model.NroDocumento,
-                        Estado = "A",
-                        Fecha_Registro = DateTime.Now,
-                        Datos_Adicionales = "Registrado desde fuente externa"
                     };
 
-                    DatosModel db = new DatosModel();
-
-                    db.UsuarioSet.Add(usuarioRC);
-
-                    db.SaveChanges();
+                    reservasConsultas.AddUsuario(usuarioRC);
 
                     if (result.Succeeded)
                     {

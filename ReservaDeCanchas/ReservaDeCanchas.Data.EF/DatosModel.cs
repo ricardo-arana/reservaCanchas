@@ -1,10 +1,7 @@
-namespace DatosRC.ADO
+namespace ReservaDeCanchas.Data.EF
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
+    using Dominio;
     public partial class DatosModel : DbContext
     {
         public DatosModel()

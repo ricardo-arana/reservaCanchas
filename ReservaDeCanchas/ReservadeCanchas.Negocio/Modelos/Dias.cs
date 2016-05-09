@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReservadeCanchas.Negocio.Modelos
+namespace ReservaDeCanchas.Negocio.Modelos
 {
     public class Dias
     {

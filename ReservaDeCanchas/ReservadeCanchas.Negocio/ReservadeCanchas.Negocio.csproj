@@ -31,12 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReservaDeCanchas.Data.EF\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -49,22 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Modelos\Dias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservasConsultas.cs" />
     <Compile Include="Reserva\Fechas.cs" />
     <Compile Include="Servicios\ServicioReserva.cs" />
+    <Compile Include="ViewModels\CampoViewModel.cs" />
+    <Compile Include="ViewModels\TipoCampoViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatosRC\ReservaDeCanchas.Datos.csproj">
-      <Project>{d34c1da2-2e6f-4464-adf4-9e639bd28d52}</Project>
-      <Name>ReservaDeCanchas.Datos</Name>
+    <ProjectReference Include="..\ReservaDeCanchas.Data\ReservaDeCanchas.Data.csproj">
+      <Project>{8ead36ff-b9bc-4697-bca9-f28a0a4a9b22}</Project>
+      <Name>ReservaDeCanchas.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReservaDeCanchas.Dominio\ReservaDeCanchas.Dominio.csproj">
+      <Project>{1e0ab849-c2b0-4f8e-8619-5fc5475cf702}</Project>
+      <Name>ReservaDeCanchas.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

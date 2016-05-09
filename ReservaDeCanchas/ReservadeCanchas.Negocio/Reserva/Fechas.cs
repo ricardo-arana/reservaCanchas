@@ -1,11 +1,11 @@
-﻿using ReservadeCanchas.Negocio.Modelos;
+﻿using ReservaDeCanchas.Negocio.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReservadeCanchas.Negocio.Reserva
+namespace ReservaDeCanchas.Negocio.Reserva
 {
     public class Fechas
     {
