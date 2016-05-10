@@ -5,35 +5,39 @@
 
 <h2>Campos Disponibles</h2>
 
-<div class="row">
+
         @if (Model == null)
         {
             <h1>No hay Campos disponibles</h1>
         }
         else
         {
-            foreach (var item in Model)
-            {
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="" alt="">
-                        <div class="caption">
-                            <h3>@item.Nombre</h3>
-                            <p>@item.Descripcion</p>
-                            <p>
-                                @Html.ActionLink("Ver Horarios", "Horarios", new { id = item.id }, new { @class = "btn btn-primary", role = "button" })
-                                <!--<a href="#" class="btn btn-primary" role="button">Ver Horarios</a> -->
-                                <a href="#" class="btn btn-default" role="button">más Información</a>
-                            </p>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-sm-4 col-md-3 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="" alt="">
+                            <div class="caption">
+                                <h3>@item.Nombre</h3>
+                                <p>@item.Descripcion</p>
+                                <p>
+                                    @Html.ActionLink("Ver Horarios", "Horarios", new { id = item.id }, new { @class = "btn btn-primary", role = "button" })
+                                    <!--<a href="#" class="btn btn-primary" role="button">Ver Horarios</a> -->
+
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        }
-       
 
+                }
+            </div>
+        }
             
-</div>
+
+
+
 
 
 

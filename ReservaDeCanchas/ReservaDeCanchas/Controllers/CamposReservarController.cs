@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using ReservaDeCanchas.Infraestructura;
 using ReservadeCanchas.Negocio;
 using ReservaDeCanchas.Negocio.ViewModels;
+using System.Net;
+using System;
 
 namespace ReservaDeCanchas.Controllers
 {
@@ -23,29 +25,29 @@ namespace ReservaDeCanchas.Controllers
             return View(campos);
         }
 
-        //public ActionResult Horarios(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CampoSet campoSet = db.CampoSet.Find(id);
-        //    if (campoSet == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+        public ActionResult Horarios(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CampoReservaViewModel campoSet = reservasConsultas.CampoReservaFindId(id);
+            if (campoSet == null)
+            {
+                return HttpNotFound();
+            }
 
 
-            
-        //    DateTime fecha = DateTime.Now.Date;
-            
-        //    Fechas fechas = new Fechas();
-        //    IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
-        //    IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha && r.Campo_Id == campoSet.Id).ToList();
-        //    var model = new CampoDetalleViewModel {campo = campoSet, semana = diasSemana, reservas = reservasLista };
 
-        //    return View(model);
-        //}
+            DateTime fecha = DateTime.Now.Date;
+
+            Fechas fechas = new Fechas();
+            IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
+            IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha && r.Campo_Id == campoSet.Id).ToList();
+            var model = new CampoDetalleViewModel { campo = campoSet, semana = diasSemana, reservas = reservasLista };
+
+            return View(campoSet);
+        }
 
         ////public PartialViewResult HorariosDetalle(DateTime fecha)
         ////{
@@ -57,9 +59,9 @@ namespace ReservaDeCanchas.Controllers
         ////    Fechas fechas = new Fechas();
         ////    IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
         ////    var semana = diasSemana;
-            
+
         ////    //var model = db.ReservaSet.Where(p => p.FechaHoraAlquiler >= fecha && p.FechaHoraAlquiler <= fecha2);
-            
+
         ////    return PartialView("_HorariosDetalle", semana);
         ////}
 
@@ -72,7 +74,7 @@ namespace ReservaDeCanchas.Controllers
         //    reserva.CreadoPor = User.Identity.Name;
         //    reserva.UsuarioSet = db.UsuarioSet.Find(User.Identity.GetUserId());
         //    reserva.CampoSet = db.CampoSet.Find(reserva.Campo_Id);
-            
+
         //    return View(reserva);
         //}
 
@@ -98,9 +100,9 @@ namespace ReservaDeCanchas.Controllers
 
         //public PartialViewResult HorariosResultado(int campoId, string FechaInicio)
         //{
-            
+
         //    CampoSet campoSet = db.CampoSet.Find(campoId);
-          
+
         //    Fechas fechas = new Fechas();
         //    DateTime fecha = DateTime.ParseExact(FechaInicio.Substring(0,10), "yyyy-MM-dd", CultureInfo.InvariantCulture);
         //    IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);

@@ -19,6 +19,7 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public int id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string TipoCampo { get; set; }
 
     }
 }

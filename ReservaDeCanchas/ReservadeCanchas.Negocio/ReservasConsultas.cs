@@ -32,6 +32,18 @@ namespace ReservadeCanchas.Negocio
             db.Usuarios.Add(usuario);
         }
 
+        public CampoReservaViewModel CampoReservaFindId(int? id)
+        {
+            var o = db.Campos.Find(c => c.Id == id).Single();
+            return new CampoReservaViewModel
+            {
+                id = o.Id,
+                Nombre = o.Nombre,
+                Descripcion = o.Descripcion,
+                TipoCampo = o.Tipo_campoSet.Nombre
+            };
+        }
+
         public string GetNombreUsuario(string id)
         {
             return db.Usuarios.Find(u => u.Id == id).Single().Nombre;
@@ -42,6 +54,7 @@ namespace ReservadeCanchas.Negocio
             return db.Campos.GetAll()
                 .Select(o => new CampoReservaViewModel
                 {
+                    id = o.Id,
                     Nombre = o.Nombre,
                     Descripcion = o.Descripcion
                 });
@@ -52,6 +65,7 @@ namespace ReservadeCanchas.Negocio
             var o = db.Campos.Find(c => c.Id == id).Single();
             return new CampoListViewModel
             {
+                id = o.Id,
                 Nombre = o.Nombre,
                 Descripcion = o.Descripcion,
                 Estado = o.Estado,
@@ -71,6 +85,7 @@ namespace ReservadeCanchas.Negocio
         {
             return db.Campos.GetAll()
                 .Select(o => new CampoListViewModel {
+                id = o.Id,
                 Nombre = o.Nombre,
                 Descripcion = o.Descripcion,
                 Estado = o.Estado,

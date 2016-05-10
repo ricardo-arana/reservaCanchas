@@ -1,4 +1,4 @@
-﻿@model ReservaDeCanchas.Models.CampoDetalleViewModel
+﻿@model ReservaDeCanchas.Negocio.ViewModels.CampoReservaViewModel
 
 
 @{
@@ -12,27 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.campo.Tipo_campoSet.Nombre)
+            @Html.DisplayNameFor(model => model.TipoCampo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.campo.Tipo_campoSet.Nombre)
+            @Html.DisplayFor(model => model.TipoCampo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.campo.Nombre)
+            @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.campo.Nombre)
+            @Html.DisplayFor(model => model.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.campo.Descripcion)
+            @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.campo.Descripcion)
+            @Html.DisplayFor(model => model.Descripcion)
         </dd>
 
 
@@ -67,7 +67,7 @@
                             value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")"
                             max="@DateTime.Now.Date.AddDays(14).ToString("yyyy-MM-dd")" 
                             class="form-control" />
-                     <input type="hidden" name="campoId" value="@Model.campo.Id" />
+                     <input type="hidden" name="campoId" value="@Model.id" />
 
                      
                  </div>

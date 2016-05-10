@@ -310,7 +310,6 @@
     <Content Include="Views\Tipo_campo\Index.cshtml" />
     <Content Include="Views\CamposReservar\Index.cshtml" />
     <Content Include="Views\CamposReservar\Horarios.cshtml" />
-    <Content Include="Views\CamposReservar\_HorariosDetalle.cshtml" />
     <Content Include="Views\CamposReservar\Reservar.cshtml" />
     <Content Include="Views\CamposReservar\ReservarCrear.cshtml" />
     <Content Include="Views\CamposReservar\MisReservas.cshtml" />
