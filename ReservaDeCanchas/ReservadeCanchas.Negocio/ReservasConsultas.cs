@@ -60,6 +60,20 @@ namespace ReservadeCanchas.Negocio
                 });
         }
 
+        public IEnumerable<ReservaViewModel> ReservasPorCampo(int id, DateTime fecha)
+        {
+            return db.Reservas.GetAll()
+                .Where(r => r.Campo_Id == id && r.FechaHoraAlquiler.Date >= fecha &&
+                r.FechaHoraAlquiler.Date <= fecha.AddDays(7))
+                .Select(o => new ReservaViewModel
+                {
+                    Estado = o.Estado
+                ,
+                    FechaHoraAlquiler = o.FechaHoraAlquiler,
+                    MontoAlquiler = o.MontoAlquiler
+                });
+        }
+
         public CampoListViewModel CampoFindId(int? id)
         {
             var o = db.Campos.Find(c => c.Id == id).Single();

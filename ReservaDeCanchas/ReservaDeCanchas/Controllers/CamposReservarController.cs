@@ -6,6 +6,8 @@ using ReservadeCanchas.Negocio;
 using ReservaDeCanchas.Negocio.ViewModels;
 using System.Net;
 using System;
+using ReservaDeCanchas.Negocio.Reserva;
+using ReservaDeCanchas.Negocio.Modelos;
 
 namespace ReservaDeCanchas.Controllers
 {
@@ -36,17 +38,23 @@ namespace ReservaDeCanchas.Controllers
             {
                 return HttpNotFound();
             }
-
-
-
+            
             DateTime fecha = DateTime.Now.Date;
 
             Fechas fechas = new Fechas();
             IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
-            IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha && r.Campo_Id == campoSet.Id).ToList();
-            var model = new CampoDetalleViewModel { campo = campoSet, semana = diasSemana, reservas = reservasLista };
+            CampoReservaHorariosViewModel model = new CampoReservaHorariosViewModel
+            {
+                id = campoSet.id,
+                Nombre = campoSet.Nombre,
+                Descripcion = campoSet.Descripcion,
+                Semana = diasSemana,
+                TipoCampo = campoSet.TipoCampo,
+                Reservas = reservasConsultas.ReservasPorCampo(campoSet.id, fecha)
+            };
+            
 
-            return View(campoSet);
+            return View(model);
         }
 
         ////public PartialViewResult HorariosDetalle(DateTime fecha)

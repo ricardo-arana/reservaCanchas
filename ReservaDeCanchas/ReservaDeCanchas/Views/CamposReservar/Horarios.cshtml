@@ -1,4 +1,4 @@
-﻿@model ReservaDeCanchas.Negocio.ViewModels.CampoReservaViewModel
+﻿@model ReservaDeCanchas.Negocio.ViewModels.CampoReservaHorariosViewModel
 
 
 @{
@@ -81,7 +81,9 @@
         </div>
 <p>
     <div id="horariosEncontrados" class="row">
-        @Html.Partial("_HorarioDetalle", Model);
+        @Html.Partial("_HorarioDetalle",
+       new ReservaDeCanchas.Negocio.ViewModels.HorarioViewModel { idCampo = Model.id,
+       semana = Model.Semana,Reservas=Model.Reservas});
     </div>
 </p>
 

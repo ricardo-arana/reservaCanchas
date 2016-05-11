@@ -7,8 +7,8 @@
     <ProjectGuid>{854E7BE5-9EF5-4568-912C-AC8C45A8C4DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReservadeCanchas.Negocio</RootNamespace>
-    <AssemblyName>ReservadeCanchas.Negocio</AssemblyName>
+    <RootNamespace>ReservaDeCanchas.Negocio</RootNamespace>
+    <AssemblyName>ReservaDeCanchas.Negocio</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,6 +51,7 @@
     <Compile Include="Reserva\Fechas.cs" />
     <Compile Include="Servicios\ServicioReserva.cs" />
     <Compile Include="ViewModels\CampoViewModel.cs" />
+    <Compile Include="ViewModels\ReservaViewModel.cs" />
     <Compile Include="ViewModels\TipoCampoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>

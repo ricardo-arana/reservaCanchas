@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReservaDeCanchas.Negocio.Modelos;
+using System;
+using System.Collections.Generic;
 
 namespace ReservaDeCanchas.Negocio.ViewModels
 {
@@ -20,6 +22,20 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string TipoCampo { get; set; }
+
+    }
+ 
+    public class CampoReservaHorariosViewModel
+    {
+        public int id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string TipoCampo { get; set; }
+
+        public IEnumerable<Dias> Semana { get; set; }
+
+        public IEnumerable<ReservaViewModel> Reservas { get; set; }
+
 
     }
 }
