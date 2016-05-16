@@ -8,6 +8,9 @@ using System.Net;
 using System;
 using ReservaDeCanchas.Negocio.Reserva;
 using ReservaDeCanchas.Negocio.Modelos;
+using System.Globalization;
+using ReservaDeCanchas.Negocio.Servicios;
+using Microsoft.AspNet.Identity;
 
 namespace ReservaDeCanchas.Controllers
 {
@@ -86,15 +89,15 @@ namespace ReservaDeCanchas.Controllers
         //    return View(reserva);
         //}
 
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult ReservarCrear(string ifechaAlquiler, string iHora, string iFechaVencimiento, string iIdCampo)
-        //{
-        //    decimal montoAlquiler = 160;
-        //    ServicioReserva sericioReserva = new ServicioReserva();
-        //    ViewBag.ok = sericioReserva.CrearReserva(ifechaAlquiler, iHora, iFechaVencimiento, iIdCampo, User.Identity.GetUserId(),montoAlquiler,0);
-        //    return View();
-        //}
+        [Authorize]
+        [HttpPost]
+        public ActionResult ReservarCrear(string ifechaAlquiler, string iHora, string iFechaVencimiento, string iIdCampo)
+        {
+            decimal montoAlquiler = 160;
+            ServicioReserva sericioReserva = new ServicioReserva();
+            ViewBag.ok = sericioReserva.CrearReserva(ifechaAlquiler, iHora, iFechaVencimiento, iIdCampo, User.Identity.GetUserId(), montoAlquiler, 0);
+            return View();
+        }
 
         //[Authorize]
         //public ActionResult MisReservas()
@@ -106,20 +109,20 @@ namespace ReservaDeCanchas.Controllers
         //}
 
 
-        //public PartialViewResult HorariosResultado(int campoId, string FechaInicio)
-        //{
+        public PartialViewResult HorariosResultado(int campoId, string FechaInicio)
+        {
+            Fechas fechas = new Fechas();
+            DateTime fecha = DateTime.ParseExact(FechaInicio.Substring(0, 10), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
 
-        //    CampoSet campoSet = db.CampoSet.Find(campoId);
-
-        //    Fechas fechas = new Fechas();
-        //    DateTime fecha = DateTime.ParseExact(FechaInicio.Substring(0,10), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-        //    IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
-        //    IEnumerable<ReservaSet> reservasLista = db.ReservaSet.Where(r => r.FechaHoraAlquiler > fecha && r.Campo_Id == campoSet.Id).ToList();
-        //    var model = new CampoDetalleViewModel { campo = campoSet, semana = diasSemana, reservas = reservasLista };
+            var model = new HorarioViewModel {idCampo = campoId,
+                semana = diasSemana,
+                Reservas = reservasConsultas.ReservasPorCampo(campoId, fecha)
+            };
 
 
-        //    return PartialView("_HorarioDetalle", model);
-        //}
+            return PartialView("_HorarioDetalle", model);
+        }
     }
 
 

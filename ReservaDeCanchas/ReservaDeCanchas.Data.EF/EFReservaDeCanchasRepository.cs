@@ -11,6 +11,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
    
         private readonly IGenericRepository<CampoSet> _campos;
         private readonly IGenericRepository<ReservaSet> _reservas;
+        private readonly IGenericRepository<UsuarioSet> _usuarios;
 
         public EFReservaDeCanchasRepository()
             : base("name=DatosModelDB")
@@ -19,6 +20,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             _campos = new CampoRepository(this);
             _reservas = new ReservaRepository(this);
+            _usuarios = new UsuarioRepository(this);
         }
         #region metodos de entity framework
         public virtual DbSet<CampoSet> CampoSet { get; set; }
@@ -75,7 +77,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
         {
             get
             {
-                throw new NotImplementedException();
+                return _usuarios;
             }
         }
 

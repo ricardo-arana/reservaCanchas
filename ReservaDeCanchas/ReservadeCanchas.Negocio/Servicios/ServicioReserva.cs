@@ -10,6 +10,10 @@ namespace ReservaDeCanchas.Negocio.Servicios
     {
         private IReservaDeCanchasRepository db;
 
+        public ServicioReserva()
+        {
+        }
+
         public ServicioReserva(IReservaDeCanchasRepository repositorio)
         {
             db = repositorio;
@@ -22,7 +26,6 @@ namespace ReservaDeCanchas.Negocio.Servicios
             int horac = int.Parse(hora.Substring(0,hora.IndexOf(":")));
             DateTime FechaHoraAlquiler = new DateTime(anio,mes,dia,horac,0,0);
             DateTime FechaDeVencimiento = DateTime.ParseExact(fechaVencimiento, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
-            //CampoSet campo = db.CampoSet.Find(idCampo);
 
             ReservaSet reserva = new ReservaSet {
                 CreadoPor = userid,

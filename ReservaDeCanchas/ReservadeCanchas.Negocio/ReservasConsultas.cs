@@ -15,7 +15,7 @@ namespace ReservadeCanchas.Negocio
         {
             db = repositorio;
         }
-
+        #region Usuarios
         public void AddUsuario(UsuarioRegistroViewModel usuarioRC)
         {
             UsuarioSet usuario = new UsuarioSet {
@@ -31,7 +31,13 @@ namespace ReservadeCanchas.Negocio
             };
             db.Usuarios.Add(usuario);
         }
+        public string GetNombreUsuario(string id)
+        {
+            return db.Usuarios.Find(u => u.Id == id).Single().Nombre;
+        }
+        #endregion
 
+        #region Campos
         public CampoReservaViewModel CampoReservaFindId(int? id)
         {
             var o = db.Campos.Find(c => c.Id == id).Single();
@@ -42,11 +48,6 @@ namespace ReservadeCanchas.Negocio
                 Descripcion = o.Descripcion,
                 TipoCampo = o.Tipo_campoSet.Nombre
             };
-        }
-
-        public string GetNombreUsuario(string id)
-        {
-            return db.Usuarios.Find(u => u.Id == id).Single().Nombre;
         }
 
         public IEnumerable<CampoReservaViewModel> CampoReservaListar()
@@ -62,9 +63,10 @@ namespace ReservadeCanchas.Negocio
 
         public IEnumerable<ReservaViewModel> ReservasPorCampo(int id, DateTime fecha)
         {
+            DateTime FechaMax = fecha.AddDays(7);
             return db.Reservas.GetAll()
-                .Where(r => r.Campo_Id == id && r.FechaHoraAlquiler.Date >= fecha &&
-                r.FechaHoraAlquiler.Date <= fecha.AddDays(7))
+                .Where(r => r.Campo_Id == id && r.FechaHoraAlquiler >= fecha &&
+                r.FechaHoraAlquiler <= FechaMax)
                 .Select(o => new ReservaViewModel
                 {
                     Estado = o.Estado
@@ -112,5 +114,8 @@ namespace ReservadeCanchas.Negocio
 
                 
         }
+
+        #endregion
     }
+
 }
