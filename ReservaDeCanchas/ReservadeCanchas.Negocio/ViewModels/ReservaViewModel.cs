@@ -18,4 +18,15 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public IEnumerable<ReservaViewModel> Reservas { get; set; }
 
     }
+
+    public class MisReservasViewModel
+    {
+        public string NombreCampo { get; set; }
+        public string Estado { get; set; }
+        public DateTime FechaHoraAlquiler { get; set; }
+        public decimal montoAlquiler { get; set; }
+        public decimal montoPagado { get; set; }
+        public DateTime fechaVencimiento { get; set; }
+
+    }
 }

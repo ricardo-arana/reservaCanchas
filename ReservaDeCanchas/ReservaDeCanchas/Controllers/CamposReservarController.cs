@@ -94,19 +94,18 @@ namespace ReservaDeCanchas.Controllers
         public ActionResult ReservarCrear(string ifechaAlquiler, string iHora, string iFechaVencimiento, string iIdCampo)
         {
             decimal montoAlquiler = 160;
-            ServicioReserva sericioReserva = new ServicioReserva();
-            ViewBag.ok = sericioReserva.CrearReserva(ifechaAlquiler, iHora, iFechaVencimiento, iIdCampo, User.Identity.GetUserId(), montoAlquiler, 0);
+           
+            ViewBag.ok = reservasConsultas.CrearReserva(ifechaAlquiler, iHora, iFechaVencimiento, iIdCampo, User.Identity.GetUserId(), montoAlquiler, 0);
             return View();
         }
 
-        //[Authorize]
-        //public ActionResult MisReservas()
-        //{
-        //    string idUser = User.Identity.GetUserId();
-        //    var Reservas = db.ReservaSet.Where(r => r.Usuario_Id == idUser);
-        //    IEnumerable<ReservaSet> reservasUsuario = Reservas.ToList();
-        //    return View(reservasUsuario);
-        //}
+        [Authorize]
+        public ActionResult MisReservas()
+        {
+            string idUser = User.Identity.GetUserId();
+            var reservasUsuario = reservasConsultas.GetMisReservas(idUser);
+            return View(reservasUsuario);
+        }
 
 
         public PartialViewResult HorariosResultado(int campoId, string FechaInicio)

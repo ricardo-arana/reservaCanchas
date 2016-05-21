@@ -4,6 +4,7 @@ using ReservaDeCanchas.Negocio.ViewModels;
 using ReservaDeCanchas.Data.Repositorio;
 using ReservaDeCanchas.Dominio;
 using System.Linq;
+using System.Globalization;
 
 namespace ReservadeCanchas.Negocio
 {
@@ -116,6 +117,59 @@ namespace ReservadeCanchas.Negocio
         }
 
         #endregion
+
+        #region reservas
+        public bool CrearReserva(string fechaAlquilar, string hora, string fechaVencimiento, string idCampo, string userid, decimal MontoAlquiler, decimal MontoPagado)
+        {
+            int dia = int.Parse(fechaAlquilar.Substring(0, 2));
+            int mes = int.Parse(fechaAlquilar.Substring(3, 2));
+            int anio = int.Parse(fechaAlquilar.Substring(6, 4));
+            int horac = int.Parse(hora.Substring(0, hora.IndexOf(":")));
+            DateTime FechaHoraAlquiler = new DateTime(anio, mes, dia, horac, 0, 0);
+            DateTime FechaDeVencimiento = DateTime.ParseExact(fechaVencimiento, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            ReservaSet reserva = new ReservaSet
+            {
+                CreadoPor = userid,
+                Estado = "P",
+                Fecha = DateTime.Now,
+                FechaHoraAlquiler = FechaHoraAlquiler,
+                FechaHoraVencimiento = FechaDeVencimiento,
+                MontoAlquiler = MontoAlquiler,
+                MontoPagado = MontoPagado,
+                Campo_Id = int.Parse(idCampo),
+                Usuario_Id = userid
+            };
+            db.Reservas.Add(reserva);
+
+            try
+            {
+                db.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public IEnumerable<MisReservasViewModel> GetMisReservas(string idUser)
+        {
+
+            return db.Reservas.Find(r => r.Usuario_Id == idUser)
+                .Select(o => new MisReservasViewModel
+                {
+                    NombreCampo = o.CampoSet.Nombre,
+                    Estado      = o.Estado,
+                    FechaHoraAlquiler = o.FechaHoraAlquiler,
+                    fechaVencimiento  = o.FechaHoraVencimiento,
+                    montoAlquiler     = o.MontoAlquiler,
+                    montoPagado       = o.MontoPagado
+                });
+        }
+
+        #endregion //Reservas
     }
 
 }

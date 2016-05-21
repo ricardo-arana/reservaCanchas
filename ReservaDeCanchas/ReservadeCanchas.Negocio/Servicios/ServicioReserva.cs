@@ -10,9 +10,7 @@ namespace ReservaDeCanchas.Negocio.Servicios
     {
         private IReservaDeCanchasRepository db;
 
-        public ServicioReserva()
-        {
-        }
+   
 
         public ServicioReserva(IReservaDeCanchasRepository repositorio)
         {
@@ -51,5 +49,7 @@ namespace ReservaDeCanchas.Negocio.Servicios
                 return false;
             }
         }
+
+       
     }
 }

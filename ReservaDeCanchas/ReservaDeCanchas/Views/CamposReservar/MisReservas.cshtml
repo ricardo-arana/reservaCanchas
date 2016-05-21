@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DatosRC.ADO.ReservaSet>
+﻿@model IEnumerable<ReservaDeCanchas.Negocio.ViewModels.MisReservasViewModel>
 
 @{
     ViewBag.Title = "Mis Reservas";
@@ -9,7 +9,7 @@
     <table class="table table-bordered">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CampoSet.Nombre)
+                @Html.DisplayNameFor(model => model.NombreCampo)
             </th>
 
             <th>
@@ -19,13 +19,13 @@
                 @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MontoAlquiler)
+                @Html.DisplayNameFor(model => model.montoAlquiler)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MontoPagado)
+                @Html.DisplayNameFor(model => model.montoPagado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaHoraVencimiento)
+                @Html.DisplayNameFor(model => model.fechaVencimiento)
             </th>
             <th>
                 Acciones
@@ -36,7 +36,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CampoSet.Nombre)
+                    @Html.DisplayFor(modelItem => item.NombreCampo)
                 </td>
 
                 <td>
@@ -65,13 +65,13 @@
                     @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MontoAlquiler)
+                    @Html.DisplayFor(modelItem => item.montoAlquiler)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MontoPagado)
+                    @Html.DisplayFor(modelItem => item.montoPagado)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaHoraVencimiento)
+                    @Html.DisplayFor(modelItem => item.fechaVencimiento)
                 </td>
                 <td>
                     <button type="button" class="btn btn-default btn-xs">Agregar Pago</button>
