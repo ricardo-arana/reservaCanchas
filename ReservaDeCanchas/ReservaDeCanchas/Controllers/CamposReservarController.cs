@@ -122,6 +122,12 @@ namespace ReservaDeCanchas.Controllers
 
             return PartialView("_HorarioDetalle", model);
         }
+
+        public ActionResult AgregarPago(int id)
+        {
+            
+            return View();
+        }
     }
 
 

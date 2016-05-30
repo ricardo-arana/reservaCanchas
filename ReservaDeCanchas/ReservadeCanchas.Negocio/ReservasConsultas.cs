@@ -141,7 +141,6 @@ namespace ReservadeCanchas.Negocio
                 Usuario_Id = userid
             };
             db.Reservas.Add(reserva);
-
             try
             {
                 db.Commit();
