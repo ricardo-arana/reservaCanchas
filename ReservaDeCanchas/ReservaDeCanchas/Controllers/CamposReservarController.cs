@@ -123,10 +123,27 @@ namespace ReservaDeCanchas.Controllers
             return PartialView("_HorarioDetalle", model);
         }
 
+        [Authorize]
         public ActionResult AgregarPago(int id)
         {
-            
-            return View();
+            PagoViewModel pagoModel = reservasConsultas.GetMontoFaltante(id);
+            return View(pagoModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult AgregarPago(PagoViewModel model)
+        {
+            bool resultado = reservasConsultas.AddPay(model);
+            ViewBag.resultado = resultado;
+            if (resultado)
+            {
+                model.descripcion = null;
+                model.MontoFaltante -= model.monto;
+                model.monto = 0;
+                model.tipoPago = null;                
+            }
+            return View(model);
         }
     }
 

@@ -21,6 +21,7 @@ namespace ReservaDeCanchas.Negocio.ViewModels
 
     public class MisReservasViewModel
     {
+        public int idReserva { get; set; }
         public string NombreCampo { get; set; }
         public string Estado { get; set; }
         public DateTime FechaHoraAlquiler { get; set; }

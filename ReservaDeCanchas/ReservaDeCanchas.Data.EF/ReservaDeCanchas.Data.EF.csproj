@@ -54,6 +54,7 @@
     <Compile Include="GenereicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostiroEntidades\CampoRepository.cs" />
+    <Compile Include="RepostiroEntidades\PagoRepository.cs" />
     <Compile Include="RepostiroEntidades\ReservaRepository.cs" />
     <Compile Include="RepostiroEntidades\UsuarioRepository.cs" />
   </ItemGroup>

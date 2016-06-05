@@ -47,6 +47,7 @@
     <Compile Include="Reserva\Fechas.cs" />
     <Compile Include="Servicios\ServicioReserva.cs" />
     <Compile Include="ViewModels\CampoViewModel.cs" />
+    <Compile Include="ViewModels\PagoViewModel.cs" />
     <Compile Include="ViewModels\ReservaViewModel.cs" />
     <Compile Include="ViewModels\TipoCampoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />

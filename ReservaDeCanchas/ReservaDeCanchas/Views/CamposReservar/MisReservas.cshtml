@@ -74,7 +74,9 @@
                     @Html.DisplayFor(modelItem => item.fechaVencimiento)
                 </td>
                 <td>
-                    <button type="button" class="btn btn-default btn-xs">Agregar Pago</button>
+                    @Html.ActionLink("Agregar Pago","AgregarPAgo",new {id = item.idReserva },
+                   new { @class = "btn btn-default btn-xs",
+                   role = "button"})
                     <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
                 </td>
             </tr>

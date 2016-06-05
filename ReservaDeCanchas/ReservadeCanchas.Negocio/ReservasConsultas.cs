@@ -31,6 +31,7 @@ namespace ReservadeCanchas.Negocio
                 Fecha_Registro = DateTime.Now
             };
             db.Usuarios.Add(usuario);
+            db.Commit();
         }
         public string GetNombreUsuario(string id)
         {
@@ -153,12 +154,15 @@ namespace ReservadeCanchas.Negocio
             }
         }
 
+        
+
         public IEnumerable<MisReservasViewModel> GetMisReservas(string idUser)
         {
 
             return db.Reservas.Find(r => r.Usuario_Id == idUser)
                 .Select(o => new MisReservasViewModel
                 {
+                    idReserva = o.Id,
                     NombreCampo = o.CampoSet.Nombre,
                     Estado      = o.Estado,
                     FechaHoraAlquiler = o.FechaHoraAlquiler,
@@ -169,6 +173,47 @@ namespace ReservadeCanchas.Negocio
         }
 
         #endregion //Reservas
+
+        #region Pagos
+        public PagoViewModel GetMontoFaltante(int id)
+        {
+            ReservaSet reserva = db.Reservas.Find(p => p.Id == id).Single();
+            decimal pago = reserva.MontoPagado;
+
+            PagoViewModel pagomodel = new PagoViewModel
+            {
+                idReserva = id,
+                MontoFaltante = 160 - pago
+            };
+            return pagomodel;
+        }
+
+        public bool AddPay(PagoViewModel model)
+        {
+            ICollection<ReservaSet> reserva = db.Reservas
+                .Find(r => r.Id == model.idReserva)
+                .ToList();
+            PagoSet pago = new PagoSet {
+                Descripcion = model.descripcion,
+                Monto = model.monto,
+                TipoPago = model.tipoPago,
+                ReservaSet = reserva,
+            };
+
+            db.Pagos.Add(pago);
+            
+            try
+            {
+                db.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+        #endregion
     }
 
 }
