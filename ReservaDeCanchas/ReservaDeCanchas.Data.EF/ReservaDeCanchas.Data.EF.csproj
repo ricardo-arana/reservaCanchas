@@ -52,10 +52,16 @@
     <Compile Include="DatosModel.cs" />
     <Compile Include="EFReservaDeCanchasRepository.cs" />
     <Compile Include="GenereicRepository.cs" />
+    <Compile Include="Migrations\201606050536295_configuracion inicial.cs" />
+    <Compile Include="Migrations\201606050536295_configuracion inicial.Designer.cs">
+      <DependentUpon>201606050536295_configuracion inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostiroEntidades\CampoRepository.cs" />
     <Compile Include="RepostiroEntidades\PagoRepository.cs" />
     <Compile Include="RepostiroEntidades\ReservaRepository.cs" />
+    <Compile Include="RepostiroEntidades\Tipo_CampoRepository.cs" />
     <Compile Include="RepostiroEntidades\UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +78,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606050536295_configuracion inicial.resx">
+      <DependentUpon>201606050536295_configuracion inicial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

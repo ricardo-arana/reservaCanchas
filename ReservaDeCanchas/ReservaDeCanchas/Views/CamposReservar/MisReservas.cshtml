@@ -5,82 +5,92 @@
 }
 
 <h2>Mis Reservas</h2>
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreCampo)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.montoAlquiler)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.montoPagado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaVencimiento)
-            </th>
-            <th>
-                Acciones
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+@if (Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-bordered">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreCampo)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCampo)
+                </th>
 
-                <td>
-                    @switch (Html.DisplayFor(modelItem => item.Estado).ToString())
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.montoAlquiler)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.montoPagado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaVencimiento)
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCampo)
+                    </td>
+
+                    <td>
+                        @switch (Html.DisplayFor(modelItem => item.Estado).ToString())
                     {
                         case "P":
-                            <span class="label label-primary">Pendiente</span>
-                            break;
-                        case "A":
-                            <span class="label label-warning">Pagado</span>
-                            break;
-                        case "R":
-                            <span class="label label-success">Reservado</span>
-                            break;
-                        case "T":
-                            <span class="label label-default">Terminado</span>
-                            break;
-                        default:
-                            <span class="label label-danger">Error</span>
-                            break;
+                                <span class="label label-primary">Pendiente</span>
+                                break;
+                            case "A":
+                                <span class="label label-warning">Pagado</span>
+                                break;
+                            case "R":
+                                <span class="label label-success">Reservado</span>
+                                break;
+                            case "T":
+                                <span class="label label-default">Terminado</span>
+                                break;
+                            default:
+                                <span class="label label-danger">Error</span>
+                                break;
 
-                    }
-                </td>
+                        }
+                    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.montoAlquiler)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.montoPagado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fechaVencimiento)
-                </td>
-                <td>
-                    @Html.ActionLink("Agregar Pago","AgregarPAgo",new {id = item.idReserva },
-                   new { @class = "btn btn-default btn-xs",
-                   role = "button"})
-                    <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
-                </td>
-            </tr>
-        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.montoAlquiler)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.montoPagado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaVencimiento)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Agregar Pago", "AgregarPAgo", new { id = item.idReserva },
+                   new
+                   {
+                       @class = "btn btn-default btn-xs",
+                       role = "button"
+                   })
+                        <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
+                    </td>
+                </tr>
+            }
 
-    </table>
-</div>
+        </table>
+    </div>
+}
+else
+{
+    <h1>No Tiene reservas</h1>
+}

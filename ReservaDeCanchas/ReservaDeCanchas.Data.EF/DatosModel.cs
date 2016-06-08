@@ -24,10 +24,10 @@ namespace ReservaDeCanchas.Data.EF
                 .HasForeignKey(e => e.Campo_Id)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CampoSet>()
-                .HasMany(e => e.FotoSet)
-                .WithMany(e => e.CampoSet)
-                .Map(m => m.ToTable("FotoCampo").MapLeftKey("Campo_Id").MapRightKey("Foto_Id"));
+            //modelBuilder.Entity<CampoSet>()
+            //    .HasMany(e => e.FotoSet)
+            //    .WithMany(e => e.CampoSet)
+            //    .Map(m => m.ToTable("FotoCampo").MapLeftKey("Campo_Id").MapRightKey("Foto_Id"));
 
             modelBuilder.Entity<PagoSet>()
                 .Property(e => e.Monto)
@@ -51,6 +51,8 @@ namespace ReservaDeCanchas.Data.EF
                 .WithRequired(e => e.Tipo_campoSet)
                 .HasForeignKey(e => e.Tipo_campo_Id)
                 .WillCascadeOnDelete(false);
+
+
 
             modelBuilder.Entity<UsuarioSet>()
                 .HasMany(e => e.ReservaSet)

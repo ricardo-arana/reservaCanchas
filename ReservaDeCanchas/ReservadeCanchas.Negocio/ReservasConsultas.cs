@@ -33,6 +33,8 @@ namespace ReservadeCanchas.Negocio
             db.Usuarios.Add(usuario);
             db.Commit();
         }
+
+        
         public string GetNombreUsuario(string id)
         {
             return db.Usuarios.Find(u => u.Id == id).Single().Nombre;
@@ -63,6 +65,8 @@ namespace ReservadeCanchas.Negocio
                 });
         }
 
+        
+
         public IEnumerable<ReservaViewModel> ReservasPorCampo(int id, DateTime fecha)
         {
             DateTime FechaMax = fecha.AddDays(7);
@@ -77,6 +81,8 @@ namespace ReservadeCanchas.Negocio
                     MontoAlquiler = o.MontoAlquiler
                 });
         }
+
+       
 
         public CampoListViewModel CampoFindId(int? id)
         {
@@ -98,6 +104,8 @@ namespace ReservadeCanchas.Negocio
                 }
             };
         }
+
+        
 
         public IEnumerable<CampoListViewModel> CampoListar()
         {
@@ -212,6 +220,50 @@ namespace ReservadeCanchas.Negocio
 
                 return false;
             }
+        }
+        #endregion
+
+        #region Tipo_Campo
+        public IEnumerable<TipoCampoViewModel> GetTiposCampo()
+        {
+            return db.TiposDeCampo.GetAll()
+                .Select(t => new TipoCampoViewModel {
+                    Id = t.Id,
+                    Nombre = t.Nombre,
+                    Descripcion = t.Descripcion
+                });
+        }
+        public void addTipoCampo(TipoCampoViewModel tipo_campoSet)
+        {
+            Tipo_campoSet tipoCampo = new Tipo_campoSet {
+                Id = tipo_campoSet.Id,
+                Nombre = tipo_campoSet.Nombre,
+                Descripcion = tipo_campoSet.Descripcion
+            };
+            db.TiposDeCampo.Add(tipoCampo);
+            db.Commit();
+        }
+
+        public TipoCampoViewModel GetTiposCampoId(int? id)
+        {
+            return db.TiposDeCampo.Find(o => o.Id == id)
+                .Select(t => new TipoCampoViewModel {
+                    Id = t.Id,
+                    Nombre = t.Nombre,
+                    Descripcion = t.Descripcion
+                }).Single();
+        }
+
+        public void UpdateTipoCampo(TipoCampoViewModel tipo_campo)
+        {
+            Tipo_campoSet tipoCampo = new Tipo_campoSet
+            {
+                Id = tipo_campo.Id,
+                Nombre = tipo_campo.Nombre,
+                Descripcion = tipo_campo.Descripcion
+            };
+            db.TiposDeCampo.Update(tipoCampo);
+            db.Commit();
         }
         #endregion
     }

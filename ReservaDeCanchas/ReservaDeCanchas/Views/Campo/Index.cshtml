@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DatosRC.ADO.CampoSet>
+﻿@model IEnumerable<ReservaDeCanchas.Negocio.ViewModels.CampoListViewModel>
 
 @{
     ViewBag.Title = "Mantenimiento de Campos";
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Fecha_Mod)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>
 }

@@ -30,7 +30,6 @@ namespace ReservaDeCanchas.Dominio
 
         public virtual Tipo_campoSet Tipo_campoSet { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FotoSet> FotoSet { get; set; }
     }
 }

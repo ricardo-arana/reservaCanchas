@@ -13,6 +13,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
         private readonly IGenericRepository<ReservaSet> _reservas;
         private readonly IGenericRepository<UsuarioSet> _usuarios;
         private readonly IGenericRepository<PagoSet> _pagos;
+        private readonly IGenericRepository<Tipo_campoSet> _tipoCampos;
 
         public EFReservaDeCanchasRepository()
             : base("name=DatosModelDB")
@@ -23,6 +24,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
             _reservas = new ReservaRepository(this);
             _usuarios = new UsuarioRepository(this);
             _pagos = new PagoRepository(this);
+            _tipoCampos = new Tipo_CampoRepository(this);
         }
         #region metodos de entity framework
         public virtual DbSet<CampoSet> CampoSet { get; set; }
@@ -71,7 +73,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
         {
             get
             {
-                throw new NotImplementedException();
+                return _tipoCampos;
             }
         }
 
@@ -85,7 +87,7 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<CampoSet>()
                .HasMany(e => e.ReservaSet)
                .WithRequired(e => e.CampoSet)
@@ -93,9 +95,15 @@ namespace ReservaDeCanchas.Data.Repositorio.EF
                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CampoSet>()
-                .HasMany(e => e.FotoSet)
-                .WithMany(e => e.CampoSet)
-                .Map(m => m.ToTable("FotoCampo").MapLeftKey("Campo_Id").MapRightKey("Foto_Id"));
+               .HasMany(e => e.FotoSet)
+               .WithRequired(e => e.CampoSet)
+               .HasForeignKey(e => e.Campo_Id)
+               .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<CampoSet>()
+            //    .HasMany(e => e.FotoSet)
+            //    .WithMany(e => e.CampoSet)
+            //    .Map(m => m.ToTable("FotoCampo").MapLeftKey("Campo_Id").MapRightKey("Foto_Id"));
 
             modelBuilder.Entity<PagoSet>()
                 .Property(e => e.Monto)

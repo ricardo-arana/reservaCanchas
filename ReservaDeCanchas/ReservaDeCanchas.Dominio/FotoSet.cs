@@ -9,7 +9,7 @@ namespace ReservaDeCanchas.Dominio
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FotoSet()
         {
-            CampoSet = new HashSet<CampoSet>();
+            //CampoSet = new HashSet<CampoSet>();
         }
 
         public int Id { get; set; }
@@ -18,7 +18,9 @@ namespace ReservaDeCanchas.Dominio
 
         public string URL { get; set; }
 
+        public int Campo_Id { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CampoSet> CampoSet { get; set; }
+        public virtual CampoSet CampoSet { get; set; }
     }
 }
