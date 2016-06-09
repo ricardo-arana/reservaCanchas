@@ -61,11 +61,25 @@ namespace ReservadeCanchas.Negocio
                 {
                     id = o.Id,
                     Nombre = o.Nombre,
-                    Descripcion = o.Descripcion
+                    Descripcion = o.Descripcion,
+                    TipoCampo = o.Tipo_campoSet.Nombre
                 });
         }
 
-        
+        public void addCampo(CampoListViewModel campoSet)
+        {
+            CampoSet campo = new CampoSet{
+                Id = campoSet.id,
+                Nombre = campoSet.Nombre,
+                Descripcion = campoSet.Descripcion,
+                Estado = campoSet.Estado,
+                Fecha_Creacion = campoSet.Fecha_Creacion,
+                Fecha_Mod = campoSet.Fecha_Mod,
+                Tipo_campo_Id = campoSet.Tipo_campo_Id
+            };
+            db.Campos.Add(campo);
+            db.Commit();
+        }
 
         public IEnumerable<ReservaViewModel> ReservasPorCampo(int id, DateTime fecha)
         {

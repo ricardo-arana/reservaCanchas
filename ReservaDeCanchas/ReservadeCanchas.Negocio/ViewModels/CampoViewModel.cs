@@ -13,7 +13,8 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public string Estado { get; set; }
         public DateTime Fecha_Creacion { get; set; }
         public DateTime Fecha_Mod { get; set; }
-        
+        public int Tipo_campo_Id { get; set; }
+
     }
 
     public class CampoReservaViewModel

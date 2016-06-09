@@ -8,10 +8,6 @@
 
         @if (Model.Any())
         {
-            <h1>No hay Campos disponibles</h1>
-        }
-        else
-        {
             <div class="row">
                 @foreach (var item in Model)
                 {
@@ -33,6 +29,11 @@
 
                 }
             </div>
+        }
+        else
+        {
+            <h1>No hay Campos disponibles</h1>
+           
         }
             
 
