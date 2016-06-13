@@ -5,6 +5,7 @@ using ReservaDeCanchas.Data.Repositorio;
 using ReservaDeCanchas.Dominio;
 using System.Linq;
 using System.Globalization;
+using System.Collections;
 
 namespace ReservadeCanchas.Negocio
 {
@@ -50,7 +51,9 @@ namespace ReservadeCanchas.Negocio
                 id = o.Id,
                 Nombre = o.Nombre,
                 Descripcion = o.Descripcion,
-                TipoCampo = o.Tipo_campoSet.Nombre
+                TipoCampo = o.Tipo_campoSet.Nombre,
+                imagen = o.FotoSet.Where(f => f.Principal ==true).Select(f => f.URL).FirstOrDefault(),
+                imagenes = o.FotoSet.Where(f => f.Principal == false).Select(f => f.URL)
             };
         }
 
@@ -62,12 +65,22 @@ namespace ReservadeCanchas.Negocio
                     id = o.Id,
                     Nombre = o.Nombre,
                     Descripcion = o.Descripcion,
-                    TipoCampo = o.Tipo_campoSet.Nombre
+                    TipoCampo = o.Tipo_campoSet.Nombre,
+                    imagen = o.FotoSet.Where(f => f.Principal == true).Select(f => f.URL).FirstOrDefault()
                 });
         }
 
-        public void addCampo(CampoListViewModel campoSet)
+        public void addCampo(CampoListViewModel campoSet, string imagen)
         {
+            List<FotoSet> fotos = new List<FotoSet>();
+            FotoSet foto = new FotoSet
+            {
+                Principal = true,
+                Descripcion = campoSet.Nombre,
+                URL = imagen
+            };
+
+            fotos.Add(foto);
             CampoSet campo = new CampoSet{
                 Id = campoSet.id,
                 Nombre = campoSet.Nombre,
@@ -75,11 +88,15 @@ namespace ReservadeCanchas.Negocio
                 Estado = campoSet.Estado,
                 Fecha_Creacion = campoSet.Fecha_Creacion,
                 Fecha_Mod = campoSet.Fecha_Mod,
-                Tipo_campo_Id = campoSet.Tipo_campo_Id
+                Tipo_campo_Id = campoSet.Tipo_campo_Id,
+                FotoSet = fotos
             };
             db.Campos.Add(campo);
+            
             db.Commit();
         }
+
+        
 
         public IEnumerable<ReservaViewModel> ReservasPorCampo(int id, DateTime fecha)
         {
@@ -119,7 +136,48 @@ namespace ReservadeCanchas.Negocio
             };
         }
 
-        
+        public void UpdateCampo(CampoListViewModel campoSet)
+        {
+            CampoSet campo = new CampoSet {
+                Id = campoSet.id,
+                Nombre = campoSet.Nombre,
+                Descripcion = campoSet.Descripcion,
+                Estado = campoSet.Estado,
+                Fecha_Creacion = campoSet.Fecha_Creacion,
+                Fecha_Mod = campoSet.Fecha_Mod,
+                Tipo_campo_Id = campoSet.Tipo_campo_Id
+            };
+            db.Campos.Update(campo);
+            db.Commit();
+        }
+
+        public void AddFoto(string nombreArchivo, int id)
+        {
+            FotoSet foto = new FotoSet {
+                Campo_Id = id,
+                Descripcion = nombreArchivo,
+                URL = nombreArchivo,
+                Principal = false
+            };
+            db.Fotos.Add(foto);
+            db.Commit();
+        }
+
+        public void DelCampo(CampoListViewModel campoSet)
+        {
+            CampoSet campo = new CampoSet
+            {
+                Id = campoSet.id,
+                Nombre = campoSet.Nombre,
+                Descripcion = campoSet.Descripcion,
+                Estado = campoSet.Estado,
+                Fecha_Creacion = campoSet.Fecha_Creacion,
+                Fecha_Mod = campoSet.Fecha_Mod,
+                Tipo_campo_Id = campoSet.Tipo_campo_Id
+            };
+            db.Campos.Delete(campo);
+            db.Commit();
+        }
 
         public IEnumerable<CampoListViewModel> CampoListar()
         {

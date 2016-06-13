@@ -1,4 +1,4 @@
-﻿@model DatosRC.ADO.CampoSet
+﻿@model ReservaDeCanchas.Negocio.ViewModels.CampoListViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Campo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -14,7 +14,7 @@
         <h4>CampoSet</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -39,28 +39,24 @@
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_Creacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_Creacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_Creacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_Mod, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_Mod, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_Mod, "", new { @class = "text-danger" })
-            </div>
-        </div>
+       
+                @Html.HiddenFor(model => model.Fecha_Creacion)         
+                @Html.HiddenFor(model => model.Fecha_Mod)
+         
+  
 
         <div class="form-group">
             @Html.LabelFor(model => model.Tipo_campo_Id, "Tipo_campo_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Tipo_campo_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Tipo_campo_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="imagenes">Imagenes</label>
+            <div class="col-md-10">
+                <input name="imagenes" class="form-control text-box single-line" type="file" id="imagenes" multiple/>
             </div>
         </div>
 

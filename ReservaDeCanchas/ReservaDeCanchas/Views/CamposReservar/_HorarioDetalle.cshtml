@@ -21,12 +21,17 @@
                 <tr>
                     <td>@string.Format("{0}:00", i)</td>
                     @foreach (var dia in Model.semana)
-                            {
-                                var fechaCompara = new DateTime(dia.fecha.Year, dia.fecha.Month, dia.fecha.Day, i, 0, 0);
-                                if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara).Any())
-                                {
+                    {
+                        var fechaCompara = new DateTime(dia.fecha.Year, dia.fecha.Month, dia.fecha.Day, i, 0, 0);
+
+                        if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara).Any())
+                        {
                             <td class="success">Reservado</td>
-                    }
+                        }
+                        else if (i-1 < DateTime.Now.Hour && dia.fecha.Date == DateTime.Now.Date)
+                        {
+                            <td class="active">Bloqueado</td>
+                        }
                         else
                         {
                             <td>

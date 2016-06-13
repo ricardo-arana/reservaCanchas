@@ -6,39 +6,101 @@
 }
 
 <h2>Horarios</h2>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <div>
+        <h4>CampoSet</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoCampo)
+            </dt>
 
-<div>
-    <h4>CampoSet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoCampo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TipoCampo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TipoCampo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
 
 
 
-    </dl>
+        </dl>
+    </div>
 </div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+
+    @if (Model.imgPrincial != null && Model.fotos.Any())
+    {
+        <div class="row">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    @for (int i = 1; i <= Model.fotos.Count(); i++)
+                    {
+                        <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+                    }
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active center-block">
+                        <img class="img-responsive center-block" src="~/Images/Campos/@Model.imgPrincial" alt="...">
+                        <div class="carousel-caption">
+                            ...
+                        </div>
+                    </div>
+                    @foreach (string foto in Model.fotos)
+                {
+                        <div class="item">
+                            <img class="img-responsive center-block" src="~/Images/Campos/@foto" alt="...">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+
+
+        </div>
+    }
+    else if (Model.imgPrincial != null)
+    {
+        <div class="center-block">
+            <img class="img-responsive" src="~/Images/Campos/@Model.imgPrincial" alt="...">
+        </div>
+    }
+</div>
+   
+</div>
+
 
 <div class="row">
     @using (Ajax.BeginForm("HorariosResultado", "CamposReservar",

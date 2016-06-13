@@ -218,6 +218,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Imagen.cs" />
+    <Compile Include="Helpers\SubirImagen.cs" />
     <Compile Include="Migrations\201604301928241_Initial.cs" />
     <Compile Include="Migrations\201604301928241_Initial.Designer.cs">
       <DependentUpon>201604301928241_Initial.cs</DependentUpon>
@@ -319,7 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
+    <Folder Include="Images\Campos\Thumbnails\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>

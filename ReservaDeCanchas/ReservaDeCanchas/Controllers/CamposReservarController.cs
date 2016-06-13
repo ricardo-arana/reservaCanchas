@@ -53,7 +53,10 @@ namespace ReservaDeCanchas.Controllers
                 Descripcion = campoSet.Descripcion,
                 Semana = diasSemana,
                 TipoCampo = campoSet.TipoCampo,
-                Reservas = reservasConsultas.ReservasPorCampo(campoSet.id, fecha)
+                Reservas = reservasConsultas.ReservasPorCampo(campoSet.id, fecha),
+                imgPrincial = campoSet.imagen,
+                fotos = campoSet.imagenes
+                
             };
             
 
