@@ -318,6 +318,7 @@
     <Content Include="Views\CamposReservar\MisReservas.cshtml" />
     <Content Include="Views\CamposReservar\_HorarioDetalle.cshtml" />
     <Content Include="Views\CamposReservar\AgregarPago.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

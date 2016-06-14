@@ -7,87 +7,96 @@
 <h2>Mis Reservas</h2>
 @if (Model.Any())
 {
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreCampo)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Estado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.montoAlquiler)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.montoPagado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fechaVencimiento)
-                </th>
-                <th>
-                    Acciones
-                </th>
-            </tr>
 
+    <div class="row">
+        <div class="panel-group col-lg-8" id="accordion" role="tablist" aria-multiselectable="true">
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NombreCampo)
-                    </td>
+                <div class="panel panel-warning">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@item.idReserva" aria-expanded="false" aria-controls="@item.idReserva">
+                                @item.NombreCampo <br /> <span class="glyphicon glyphicon-time"></span>@item.FechaHoraAlquiler
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@item.idReserva" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div>
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.NombreCampo)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(modelItem => item.NombreCampo)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Estado)
+                                    </dt>
+                                    <dd>
+                                        @switch (Html.DisplayFor(modelItem => item.Estado).ToString())
+                                        {
+                                            case "P":
+                                                <span class="label label-primary">Pendiente</span>
+                                                break;
+                                            case "A":
+                                                <span class="label label-warning">Pagado</span>
+                                                break;
+                                            case "R":
+                                                <span class="label label-success">Reservado</span>
+                                                break;
+                                            case "T":
+                                                <span class="label label-default">Terminado</span>
+                                                break;
+                                            default:
+                                                <span class="label label-danger">Error</span>
+                                                break;
 
-                    <td>
-                        @switch (Html.DisplayFor(modelItem => item.Estado).ToString())
-                    {
-                        case "P":
-                                <span class="label label-primary">Pendiente</span>
-                                break;
-                            case "A":
-                                <span class="label label-warning">Pagado</span>
-                                break;
-                            case "R":
-                                <span class="label label-success">Reservado</span>
-                                break;
-                            case "T":
-                                <span class="label label-default">Terminado</span>
-                                break;
-                            default:
-                                <span class="label label-danger">Error</span>
-                                break;
+                                        }
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.FechaHoraAlquiler)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
+                                    </dd>
+                                    <dT>
+                                        @Html.DisplayNameFor(model => model.montoAlquiler)
+                                    </dT>
+                                    <dd>
+                                        @Html.DisplayFor(modelItem => item.montoAlquiler)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.montoPagado)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(modelItem => item.montoPagado)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.fechaVencimiento)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(modelItem => item.fechaVencimiento)
+                                    </dd>
 
-                        }
-                    </td>
+                                </dl>
+                            </div>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaHoraAlquiler)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.montoAlquiler)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.montoPagado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaVencimiento)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Agregar Pago", "AgregarPAgo", new { id = item.idReserva },
+                            @Html.ActionLink("Agregar Pago", "AgregarPAgo", new { id = item.idReserva },
                    new
                    {
                        @class = "btn btn-default btn-xs",
                        role = "button"
                    })
-                        <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
-                    </td>
-                </tr>
+                            <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
             }
 
-        </table>
+
+        </div>
     </div>
 }
 else

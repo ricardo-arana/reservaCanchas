@@ -24,11 +24,19 @@
                     {
                         var fechaCompara = new DateTime(dia.fecha.Year, dia.fecha.Month, dia.fecha.Day, i, 0, 0);
 
-                        if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara).Any())
+                        if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara && o.Estado == "P").Any())
                         {
-                            <td class="success">Reservado</td>
+                            <td class="danger">Por Pagar</td>
                         }
-                        else if (i-1 < DateTime.Now.Hour && dia.fecha.Date == DateTime.Now.Date)
+                        else if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara && o.Estado == "R").Any())
+                        {
+                            <td class="success">Reservador</td>
+                        }
+                        else if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara && o.Estado == "B").Any())
+                        {
+                            <td class="active">Bloqueado</td>
+                        }
+                        else if (i - 1 < DateTime.Now.Hour && dia.fecha.Date == DateTime.Now.Date)
                         {
                             <td class="active">Bloqueado</td>
                         }

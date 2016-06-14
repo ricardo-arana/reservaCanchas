@@ -20,6 +20,8 @@ namespace ReservaDeCanchas.Dominio
 
         public decimal Monto { get; set; }
 
+        public string Estado { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReservaSet> ReservaSet { get; set; }
     }
