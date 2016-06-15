@@ -63,34 +63,6 @@ namespace ReservaDeCanchas.Controllers
             return View(model);
         }
 
-        ////public PartialViewResult HorariosDetalle(DateTime fecha)
-        ////{
-        ////    if (fecha == null)
-        ////    {
-        ////        fecha = DateTime.Now;
-        ////    }
-        ////    DateTime fecha2 = fecha.AddDays(7);
-        ////    Fechas fechas = new Fechas();
-        ////    IEnumerable<Dias> diasSemana = fechas.ObtenerSemana(fecha);
-        ////    var semana = diasSemana;
-
-        ////    //var model = db.ReservaSet.Where(p => p.FechaHoraAlquiler >= fecha && p.FechaHoraAlquiler <= fecha2);
-
-        ////    return PartialView("_HorariosDetalle", semana);
-        ////}
-
-        //[Authorize]
-        //public ActionResult Reservar(ReservaSet reserva)
-        //{
-        //    reserva.Fecha = DateTime.Now;
-        //    reserva.FechaHoraVencimiento = DateTime.Now.AddDays(1);
-        //    reserva.Estado = "P";
-        //    reserva.CreadoPor = User.Identity.Name;
-        //    reserva.UsuarioSet = db.UsuarioSet.Find(User.Identity.GetUserId());
-        //    reserva.CampoSet = db.CampoSet.Find(reserva.Campo_Id);
-
-        //    return View(reserva);
-        //}
 
         [Authorize]
         [HttpPost]
@@ -137,6 +109,7 @@ namespace ReservaDeCanchas.Controllers
         [Authorize]
         public ActionResult AgregarPago(PagoViewModel model)
         {
+            model.Estado = "P";
             bool resultado = reservasConsultas.AddPay(model);
             ViewBag.resultado = resultado;
             if (resultado)
@@ -144,7 +117,8 @@ namespace ReservaDeCanchas.Controllers
                 model.descripcion = null;
                 model.MontoFaltante -= model.monto;
                 model.monto = 0;
-                model.tipoPago = null;                
+                model.tipoPago = null;
+                             
             }
             return View(model);
         }

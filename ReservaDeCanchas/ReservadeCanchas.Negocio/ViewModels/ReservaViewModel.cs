@@ -28,6 +28,7 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public decimal montoAlquiler { get; set; }
         public decimal montoPagado { get; set; }
         public DateTime fechaVencimiento { get; set; }
+        public IEnumerable<PagoDetalleViewModel> Pagos { get; set; }
 
     }
 }

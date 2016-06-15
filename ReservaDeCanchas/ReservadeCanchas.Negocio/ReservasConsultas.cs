@@ -248,7 +248,15 @@ namespace ReservadeCanchas.Negocio
                     FechaHoraAlquiler = o.FechaHoraAlquiler,
                     fechaVencimiento  = o.FechaHoraVencimiento,
                     montoAlquiler     = o.MontoAlquiler,
-                    montoPagado       = o.MontoPagado
+                    montoPagado       = o.MontoPagado,
+                    Pagos              = o.PagoSet.Select(p => new PagoDetalleViewModel {
+                        PagoId = p.Id,
+                        Descripcion = p.Descripcion,
+                        Estado = p.Estado,
+                        Monto = p.Monto,
+                        TipoPago = p.TipoPago
+                    })
+                    
                 });
         }
 
@@ -278,6 +286,7 @@ namespace ReservadeCanchas.Negocio
                 Monto = model.monto,
                 TipoPago = model.tipoPago,
                 ReservaSet = reserva,
+                Estado = model.Estado
             };
 
             db.Pagos.Add(pago);

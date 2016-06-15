@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201606111530184_foto por defecto.Designer.cs">
       <DependentUpon>201606111530184_foto por defecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606150251570_estado de pago.cs" />
+    <Compile Include="Migrations\201606150251570_estado de pago.Designer.cs">
+      <DependentUpon>201606150251570_estado de pago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostiroEntidades\CampoRepository.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606111530184_foto por defecto.resx">
       <DependentUpon>201606111530184_foto por defecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606150251570_estado de pago.resx">
+      <DependentUpon>201606150251570_estado de pago.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

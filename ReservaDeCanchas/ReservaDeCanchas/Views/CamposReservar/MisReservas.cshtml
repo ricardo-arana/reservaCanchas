@@ -90,6 +90,59 @@
                        role = "button"
                    })
                             <button type="button" class="btn btn-danger btn-xs">Cancelar</button>
+                            @if(item.Pagos.Any())
+                            {
+                            <div class="row">
+                                <table class="table table-bordered">
+                                     <thead>
+                                     <tr> 
+                                        <th>ID</th> 
+                                        <th>Tipo de Pago</th> 
+                                        <th>Descripción</th> 
+                                        <th>Estado</th> 
+                                        <th>Monto</th>
+                                        <th>Opciones</th>
+                                     </tr> 
+                                    </thead> 
+                                    <tbody> 
+                                        @foreach (var item2 in item.Pagos)
+                                        {
+                                            <tr>
+                                                <th scope="row">@item2.PagoId</th>
+                                                <td>@item2.TipoPago</td>
+                                                <td>@item2.Descripcion</td>
+                                                 @switch (item2.Estado)
+                                                 {
+                                                    case "P":
+                                                    <td>Pendiente</td>
+                                                            break;
+                                                    case "R":
+                                                        <td>Rechazado</td>
+                                                         break;
+                                                     case "A":
+                                                        <td>Acepteado</td>
+                                                         break;
+                                                     default:
+                                                        <td>Error</td>
+                                                         break;
+                                                 }
+
+
+                                                                <td>@item2.Monto</td>
+
+
+                                                                <td> Eliminar</td>
+
+
+                                                            </tr>
+                                        }
+
+
+
+                                   </tbody>
+                                </table>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -99,7 +152,7 @@
         </div>
     </div>
 }
-else
-{
+                                                 else
+                                                 {
     <h1>No Tiene reservas</h1>
-}
+                                                 }
