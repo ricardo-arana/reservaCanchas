@@ -36,6 +36,7 @@ namespace ReservadeCanchas.Negocio
         }
 
         
+
         public string GetNombreUsuario(string id)
         {
             return db.Usuarios.Find(u => u.Id == id).Single().Nombre;
@@ -239,7 +240,7 @@ namespace ReservadeCanchas.Negocio
         public IEnumerable<MisReservasViewModel> GetMisReservas(string idUser)
         {
 
-            return db.Reservas.Find(r => r.Usuario_Id == idUser)
+            return db.Reservas.Find(r => r.Usuario_Id == idUser && r.FechaHoraAlquiler >= DateTime.Today)
                 .Select(o => new MisReservasViewModel
                 {
                     idReserva = o.Id,
@@ -301,6 +302,43 @@ namespace ReservadeCanchas.Negocio
 
                 return false;
             }
+        }
+        public IEnumerable<PagoAdminViewModel> getPagos()
+        {
+            return db.Pagos.GetAll().Select(t => new PagoAdminViewModel
+            {
+                PagoId = t.Id,
+                Descripcion = t.Descripcion,
+                Estado = t.Estado,
+                Monto = t.Monto,
+                TipoPago = t.TipoPago,
+                NombreCampo = t.ReservaSet.FirstOrDefault().CampoSet.Nombre,
+                ReservaId = t.ReservaSet.FirstOrDefault().Id
+            });
+        }
+
+        public void ProcesaPago(int id, string flag)
+        {
+            PagoSet pago = db.Pagos.Find(p => p.Id == id).FirstOrDefault();
+            switch (flag)
+            {
+                case "ok":
+                    pago.Estado = "A";
+                    pago.ReservaSet.SingleOrDefault().MontoPagado += pago.Monto;
+                    if (pago.ReservaSet.SingleOrDefault().MontoPagado >= pago.ReservaSet.SingleOrDefault().MontoAlquiler / 2)
+                    {
+                        pago.ReservaSet.SingleOrDefault().Estado = "R";
+                        pago.ReservaSet.SingleOrDefault().FechaHoraVencimiento = pago.ReservaSet.SingleOrDefault().FechaHoraAlquiler;
+
+                    }
+                    break;
+                case "not":
+                    pago.Estado = "R";
+                    
+                    break;
+            }
+            db.Pagos.Update(pago);
+            db.Commit();
         }
         #endregion
 

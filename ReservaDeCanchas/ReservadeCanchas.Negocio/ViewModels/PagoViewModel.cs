@@ -27,4 +27,16 @@ namespace ReservaDeCanchas.Negocio.ViewModels
         public decimal Monto { get; set; }
         public string Estado { get; set; }
     }
+
+    public class PagoAdminViewModel
+    {
+        public int PagoId { get; set; }
+        public string TipoPago { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Monto { get; set; }
+        public string Estado { get; set; }
+        public int ReservaId { get; set; }
+        public string NombreCampo { get; set; }
+    }
+
 }

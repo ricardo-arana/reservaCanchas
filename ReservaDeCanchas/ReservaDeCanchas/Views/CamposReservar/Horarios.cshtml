@@ -145,7 +145,7 @@
     <div id="horariosEncontrados" class="row">
         @Html.Partial("_HorarioDetalle",
        new ReservaDeCanchas.Negocio.ViewModels.HorarioViewModel { idCampo = Model.id,
-       semana = Model.Semana,Reservas=Model.Reservas});
+       semana = Model.Semana,Reservas=Model.Reservas})
     </div>
 </p>
 
@@ -153,6 +153,9 @@
 
 @section Scripts{
  
+    
+    
     @Scripts.Render("~/bundles/unobtrusiveajax")
-    @Scripts.Render("/bundles/FechasHorarios")
+    @Scripts.Render("~/bundles/FechasHorarios")
+    @Scripts.Render("~/bundles/horarios")
 }
