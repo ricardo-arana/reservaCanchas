@@ -330,6 +330,8 @@
     <Content Include="Views\CamposReservar\AgregarPago.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Pagos\Index.cshtml" />
+    <Content Include="Views\CamposReservar\_TipoDeposito.cshtml" />
+    <Content Include="Views\CamposReservar\_TipoEfectivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

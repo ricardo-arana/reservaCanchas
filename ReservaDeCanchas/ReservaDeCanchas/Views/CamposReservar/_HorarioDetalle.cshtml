@@ -30,7 +30,7 @@
                         }
                         else if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara && o.Estado == "R").Any())
                         {
-                            <td class="success">Reservador</td>
+                            <td class="success">Reservado</td>
                         }
                         else if (Model.Reservas.Where(o => o.FechaHoraAlquiler == fechaCompara && o.Estado == "B").Any())
                         {
@@ -69,18 +69,17 @@
             @using (Html.BeginForm("ReservarCrear", "CamposReservar", FormMethod.Post))
             {
                 <div class="modal-body">
-
                     <div class="form-group">
                         <label for="ifechaAlquiler">Fecha de Alquiler</label>
-                        <input type="text" class="form-control" name="ifechaAlquiler" id="ifechaAlquiler" value="" />
+                        <input type="text" class="form-control" name="ifechaAlquiler" id="ifechaAlquiler" value="" readonly/>
                     </div>
                     <div class="form-group">
                         <label for="iHora">Hora de Alquiler</label>
-                        <input type="text" class="form-control" name="iHora" id="iHora" value="" />
+                        <input type="text" class="form-control" name="iHora" id="iHora" value="" readonly/>
                     </div>
                     <div class="form-group">
                         <label for="iFechaVencimiento">Fecha de vencimiento</label>
-                        <input type="text" class="form-control" name="iFechaVencimiento" id="iFechaVencimiento" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm")" />
+                        <input type="text" class="form-control" name="iFechaVencimiento" id="iFechaVencimiento" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm")" readonly/>
                     </div>
                     <input type="hidden" name="iIdCampo" id="iIdCampo" value="" />
 

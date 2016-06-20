@@ -13,7 +13,7 @@
         <div class="panel-group col-lg-8" id="accordion" role="tablist" aria-multiselectable="true">
             @foreach (var item in Model)
             {
-                <div class="panel panel-warning">
+                <div class="panel panel-primary">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@item.idReserva" aria-expanded="false" aria-controls="@item.idReserva">
@@ -110,7 +110,7 @@
                                             <tr>
                                                 <th scope="row">@item2.PagoId</th>
                                                 <td>@item2.TipoPago</td>
-                                                <td>@item2.Descripcion</td>
+                                                <td id="@string.Concat("desc",@item2.PagoId)"></td>
                                                  @switch (item2.Estado)
                                                  {
                                                     case "P":
@@ -156,3 +156,23 @@
                                                  {
     <h1>No Tiene reservas</h1>
                                                  }
+
+@section Scripts {
+
+    @foreach (var item in Model)
+    {
+        foreach (var item2 in item.Pagos)
+        {
+            <script>
+              var obj = JSON.parse('@Html.Raw(item2.Descripcion)');
+              jQuery.each(obj, function (i, val) {
+              $("#desc" + @item2.PagoId).append(
+                  i + " : " + val + '<br>'
+                  );
+           });
+            </script>
+        }
+
+    }
+
+}

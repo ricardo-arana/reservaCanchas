@@ -10,11 +10,13 @@ namespace ReservaDeCanchas.Negocio.ViewModels
     public class PagoViewModel
     {
         public int idReserva { get; set; }
+        [Display(Name = "Tipo de pago")]
         public string tipoPago { get; set; }
         [DataType(DataType.MultilineText)]
         public string descripcion { get; set; }
         [DisplayFormat(DataFormatString = "{0:0.00}", ApplyFormatInEditMode = true)]
         public decimal monto { get; set; }
+        [Display(Name = "Monto Faltante")]
         public decimal MontoFaltante { get; set; }
         public string Estado { get; set; }
     }

@@ -159,26 +159,24 @@ namespace ReservaDeCanchas.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+                var usuarioRC = new UsuarioRegistroViewModel
+                {
+                    Id = user.Id,
+                    Nombre = model.Nombre,
+                    Apellido = model.Apellido,
+                    Telefono = model.Telefono,
+                    Documento_Tipo_Documento = model.TipoDocumento,
+                    Documento_Nro_Documento = model.NroDocumento,
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var result2 = await reservasConsultas.AddUsuario(usuarioRC);
+                if (result.Succeeded && result2)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
-
-                    //Crear el usuario en la tabla de reserva de cancha
-                    UsuarioRegistroViewModel usuarioRC = new UsuarioRegistroViewModel
-                    {
-                        Id = user.Id,
-                        Nombre = model.Nombre,
-                        Apellido = model.Apellido,
-                        Telefono = model.Telefono,
-                        Documento_Tipo_Documento = model.TipoDocumento,
-                        Documento_Nro_Documento = model.NroDocumento,
-                    };
-
-                    reservasConsultas.AddUsuario(usuarioRC);
                     
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
@@ -389,23 +387,24 @@ namespace ReservaDeCanchas.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var usuarioRC = new UsuarioRegistroViewModel
+                {
+                    Id = user.Id,
+                    Nombre = model.Nombre,
+                    Apellido = model.Apellido,
+                    Telefono = model.Telefono,
+                    Documento_Tipo_Documento = model.TipoDocumento,
+                    Documento_Nro_Documento = model.NroDocumento,
+                };
+
                 var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+                var result2 = await reservasConsultas.AddUsuario(usuarioRC);
+                if (result.Succeeded && result2)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
 
                     //registro de datos adicionales
-                    UsuarioRegistroViewModel usuarioRC = new UsuarioRegistroViewModel
-                    {
-                        Id = user.Id,
-                        Nombre = model.Nombre,
-                        Apellido = model.Apellido,
-                        Telefono = model.Telefono,
-                        Documento_Tipo_Documento = model.TipoDocumento,
-                        Documento_Nro_Documento = model.NroDocumento,
-                    };
 
-                    reservasConsultas.AddUsuario(usuarioRC);
 
                     if (result.Succeeded)
                     {

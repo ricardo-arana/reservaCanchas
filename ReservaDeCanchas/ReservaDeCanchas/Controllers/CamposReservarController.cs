@@ -101,6 +101,14 @@ namespace ReservaDeCanchas.Controllers
         [Authorize]
         public ActionResult AgregarPago(int id)
         {
+            ViewBag.TipoPagoDrow = new SelectList(new List<Object>{
+                       new { value = "Deposito" , text = "Deposito"  },
+                       new { value = "Efectivo" , text = "Pago en Efectivo" },
+                       new { value = "Paypal" , text = "Paypal"}
+                    },
+                  "value",
+                  "text",
+                   1);
             PagoViewModel pagoModel = reservasConsultas.GetMontoFaltante(id);
             return View(pagoModel);
         }
@@ -109,6 +117,14 @@ namespace ReservaDeCanchas.Controllers
         [Authorize]
         public ActionResult AgregarPago(PagoViewModel model)
         {
+            ViewBag.TipoPagoDrow = new SelectList(new List<Object>{
+                       new { value = "Deposito" , text = "Deposito"  },
+                       new { value = "Efectivo" , text = "Pago en Efectivo" },
+                       new { value = "Paypal" , text = "Paypal"}
+                    },
+                  "value",
+                  "text",
+                   1);
             model.Estado = "P";
             bool resultado = reservasConsultas.AddPay(model);
             ViewBag.resultado = resultado;
@@ -120,6 +136,7 @@ namespace ReservaDeCanchas.Controllers
                 model.tipoPago = null;
                              
             }
+            model = new PagoViewModel();
             return View(model);
         }
     }

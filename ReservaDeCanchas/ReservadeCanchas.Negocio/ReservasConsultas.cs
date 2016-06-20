@@ -6,6 +6,7 @@ using ReservaDeCanchas.Dominio;
 using System.Linq;
 using System.Globalization;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace ReservadeCanchas.Negocio
 {
@@ -18,7 +19,7 @@ namespace ReservadeCanchas.Negocio
             db = repositorio;
         }
         #region Usuarios
-        public void AddUsuario(UsuarioRegistroViewModel usuarioRC)
+        public async Task<bool> AddUsuario(UsuarioRegistroViewModel usuarioRC)
         {
             UsuarioSet usuario = new UsuarioSet {
                 Id = usuarioRC.Id,
@@ -32,7 +33,17 @@ namespace ReservadeCanchas.Negocio
                 Fecha_Registro = DateTime.Now
             };
             db.Usuarios.Add(usuario);
-            db.Commit();
+            try
+            {
+                db.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            
         }
 
         
