@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ReservaDeCanchas.Negocio.ViewModels.PagoAdminViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#pendientes" aria-controls="home" role="tab" data-toggle="tab">Pendientes</a></li>
+        <li role="presentation"><a href="#aceptados" aria-controls="profile" role="tab" data-toggle="tab">Aceptados</a></li>
+        <li role="presentation"><a href="#rechazados" aria-controls="messages" role="tab" data-toggle="tab">Rechazados</a></li>
+        <li role="presentation"><a href="#buscar" aria-controls="settings" role="tab" data-toggle="tab">Buscar</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="pendientes">
+            @if (Model.Where(p => p.Estado == "P").Any())
+            {
+                <div class="table-responsive">
+                    <table  class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Id Reserva</th>
+                                <th>Campo</th>
+                                <th>Tipo de Pago</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(p => p.Estado == "P"))
+                            {
+                                <tr>
+                                    <td>@item.PagoId</td>
+                                    <td>@item.ReservaId</td>
+                                    <td>@item.NombreCampo</td>
+                                    <td>@item.TipoPago</td>
+                                    <td>
+                                        <div id="@string.Concat("desc",item.PagoId)">
+                                        </div> 
+                                    </td>
+                                    <td>@item.Monto</td>
+                                    <td>
+                                        <a href="@Url.Action("ProcesaPago", "Pagos", new { id = item.PagoId, flag = "ok" })"  class="btn btn-warning btn-xs">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                        </a> 
+                                        <a href="@Url.Action("ProcesaPago", "Pagos", new { id = item.PagoId, flag = "not" })" class="btn btn-warning btn-xs">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </a> 
+                                   </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                  </div>
+                    }
+
+                </div>
+
+        <div role="tabpanel" class="tab-pane" id="aceptados">
+        @if (Model.Where(p => p.Estado == "A").Any())
+            {
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Id Reserva</th>
+                            <th>Campo</th>
+                            <th>Tipo de Pago</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(p => p.Estado == "A"))
+                        {
+                            <tr>
+                                <td>@item.PagoId</td>
+                                <td>@item.ReservaId</td>
+                                <td>@item.NombreCampo</td>
+                                <td>@item.TipoPago</td>
+                                <td id="@string.Concat("desc",item.PagoId)">
+                                    <script>
+                                       
+                                        
+                                    </script>
+                                </td>
+                                <td>@item.Monto</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="rechazados">
+            @if (Model.Where(p => p.Estado == "R").Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Id Reserva</th>
+                                <th>Campo</th>
+                                <th>Tipo de Pago</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(p => p.Estado == "R"))
+                            {
+                                <tr>
+                                    <td>@item.PagoId</td>
+                                    <td>@item.ReservaId</td>
+                                    <td>@item.NombreCampo</td>
+                                    <td>@item.TipoPago</td>
+                                    <td id="@string.Concat("desc",item.PagoId)"></td>
+                                    <td>@item.Monto</td>
+                                    <td>acciones</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="buscar">buscar!</div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    @foreach (var item in Model)
+    {
+        <script>
+    var obj = JSON.parse('@Html.Raw(item.Descripcion)');
+          jQuery.each(obj, function (i, val) {
+              $("#desc" + @item.PagoId).append(
+                  i + " : " + val + '<br>'
+                  );
+           });
+
+        </script>
+    }
+        
+    }
