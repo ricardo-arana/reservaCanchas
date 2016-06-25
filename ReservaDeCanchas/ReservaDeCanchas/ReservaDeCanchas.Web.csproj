@@ -212,6 +212,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CampoController.cs" />
     <Compile Include="Controllers\CamposReservarController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagosController.cs" />
@@ -247,6 +248,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\401.png" />
+    <Content Include="Images\404.jpg" />
+    <Content Include="Images\500.jpg" />
     <Content Include="Images\futbol.jpg" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -333,6 +337,9 @@
     <Content Include="Views\Pagos\Index.cshtml" />
     <Content Include="Views\CamposReservar\_TipoDeposito.cshtml" />
     <Content Include="Views\CamposReservar\_TipoEfectivo.cshtml" />
+    <Content Include="Views\Error\Index404.cshtml" />
+    <Content Include="Views\Error\Index500.cshtml" />
+    <Content Include="Views\Error\Index401.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
