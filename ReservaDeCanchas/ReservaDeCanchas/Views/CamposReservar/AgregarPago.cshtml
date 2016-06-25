@@ -10,13 +10,13 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Agregar Pago</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @if(ViewBag.resultado != null)
-        { 
+        @if (ViewBag.resultado != null)
+        {
             if (ViewBag.resultado)
             {
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -32,52 +32,55 @@
                 </div>
             }
         }
-    
-           @Html.HiddenFor(model => model.idReserva)
+        else
+        {
+            @Html.HiddenFor(model => model.idReserva)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tipoPago, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.tipoPago, (SelectList)ViewBag.TipoPagoDrow, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tipoPago, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.tipoPago, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.tipoPago, (SelectList)ViewBag.TipoPagoDrow, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.tipoPago, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div id="FormTipoPago">
-            @Html.Partial("_TipoDeposito")
-        </div>
-        <div id="FormEfectivo">
-            @Html.Partial("_TipoEfectivo")
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            <div id="FormTipoPago">
+                @Html.Partial("_TipoDeposito")
             </div>
-        </div>
+            <div id="FormEfectivo">
+                @Html.Partial("_TipoEfectivo")
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.monto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.monto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.monto, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.monto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.monto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.monto, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MontoFaltante, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MontoFaltante, new { htmlAttributes = new { @class = "form-control" , @readonly ="true"} })
-               @Html.HiddenFor(model => model.MontoFaltante)
+            <div class="form-group">
+                @Html.LabelFor(model => model.MontoFaltante, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MontoFaltante, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.HiddenFor(model => model.MontoFaltante)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="botonPago" type="submit" value="Agregar Pago" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="botonPago" type="submit" value="Agregar Pago" class="btn btn-default" />
+                </div>
             </div>
-        </div>
+        }
     </div>
+
 }
 
 <div>
