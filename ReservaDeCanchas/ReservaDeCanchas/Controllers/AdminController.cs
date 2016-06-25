@@ -10,13 +10,13 @@ namespace ReservaDeCanchas.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
         }
         // GET: Admin/TipoCancha
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Admin")]
         public ActionResult TipoCancha()
         {
             return View();

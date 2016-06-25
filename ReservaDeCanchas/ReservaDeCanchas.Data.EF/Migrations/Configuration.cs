@@ -27,6 +27,12 @@ namespace ReservaDeCanchas.Data.EF.Migrations
             //    );
             //
 
+            context.Tipo_campoSet.AddOrUpdate(
+                t => t.Nombre,
+                new Dominio.Tipo_campoSet { Nombre = "pequeño"},
+                new Dominio.Tipo_campoSet { Nombre = "Mediano"},
+                new Dominio.Tipo_campoSet { Nombre = "Grande"}
+                );
             
         }
     }

@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ReservaDeCanchas.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class Tipo_campoController : Controller
     {
         //private DatosModel db = new DatosModel();

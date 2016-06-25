@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ReservaDeCanchas.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PagosController : Controller
     {
         private ReservasConsultas reservaConsulta;

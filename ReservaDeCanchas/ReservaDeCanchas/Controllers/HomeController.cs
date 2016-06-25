@@ -26,7 +26,7 @@ namespace ReservaDeCanchas.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
 
